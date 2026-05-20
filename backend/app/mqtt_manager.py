@@ -1,95 +1,106 @@
 import json
 import threading
-import time
-import base64
 from typing import Callable, Optional
+
 import paho.mqtt.client as mqtt
-from app.config import (
-    MQTT_BROKER_HOST, MQTT_BROKER_PORT,
-    MQTT_TOPIC_FRAME, MQTT_TOPIC_RESULT, MQTT_TOPIC_STATUS,
-    MQTT_CLIENT_ID,
-)
+
+from app.config import MQTT_BROKER_HOST, MQTT_BROKER_PORT, MQTT_CLIENT_ID
 from app.logger import logger
+
+# Topics
+TOPIC_GAME_STATE = 'blackjack/game/state'
+TOPIC_PLAYER_ACTION = 'blackjack/player/+/action'  # + = player_id wildcard
 
 
 class MQTTManager:
     """
-    Gerencia conexão MQTT do backend:
-    - Subscreve blackjack/camera/frame
-    - Publica em blackjack/result e blackjack/status
+    MQTT bridge for the blackjack game server.
+
+    Publishes:
+      blackjack/game/state              – full game state on every change
+      blackjack/player/{id}/hand        – individual player hand
+
+    Subscribes:
+      blackjack/player/{id}/action      – player hit/stand from MQTT terminals
     """
 
     def __init__(self):
-        self._client = mqtt.Client(client_id=MQTT_CLIENT_ID, protocol=mqtt.MQTTv311)
+        # paho-mqtt 2.x requires CallbackAPIVersion to keep the old signatures
+        try:
+            self._client = mqtt.Client(
+                mqtt.CallbackAPIVersion.VERSION1,
+                client_id=MQTT_CLIENT_ID,
+                protocol=mqtt.MQTTv311,
+            )
+        except AttributeError:
+            # paho-mqtt 1.x fallback
+            self._client = mqtt.Client(client_id=MQTT_CLIENT_ID, protocol=mqtt.MQTTv311)
         self._client.on_connect = self._on_connect
         self._client.on_disconnect = self._on_disconnect
         self._client.on_message = self._on_message
-        self._frame_callback: Optional[Callable[[bytes], None]] = None
         self._connected = False
-        self._lock = threading.Lock()
+        self._action_callback: Optional[Callable[[str, str], None]] = None
 
-    # ------------------------------------------------------------------ #
-    # Callbacks MQTT
-    # ------------------------------------------------------------------ #
+    # ── MQTT callbacks ─────────────────────────────────────────────────────
+
     def _on_connect(self, client, userdata, flags, rc):
         if rc == 0:
             self._connected = True
-            logger.info(f"MQTT conectado ao broker {MQTT_BROKER_HOST}:{MQTT_BROKER_PORT}")
-            client.subscribe(MQTT_TOPIC_FRAME, qos=1)
-            logger.info(f"Subscrito em '{MQTT_TOPIC_FRAME}'")
-            self.publish_status("online")
+            logger.info(f'MQTT conectado a {MQTT_BROKER_HOST}:{MQTT_BROKER_PORT}')
+            client.subscribe(TOPIC_PLAYER_ACTION, qos=1)
+            logger.info(f'Subscrito em {TOPIC_PLAYER_ACTION!r}')
         else:
-            logger.error(f"Falha na conexão MQTT, código: {rc}")
+            logger.error(f'Falha na conexão MQTT rc={rc}')
 
     def _on_disconnect(self, client, userdata, rc):
         self._connected = False
-        logger.warning(f"MQTT desconectado (rc={rc}). Reconectando em 5s...")
+        logger.warning(f'MQTT desconectado (rc={rc})')
 
     def _on_message(self, client, userdata, msg):
-        logger.debug(f"Mensagem recebida em '{msg.topic}' ({len(msg.payload)} bytes)")
-        if msg.topic == MQTT_TOPIC_FRAME:
-            if self._frame_callback:
-                try:
-                    self._frame_callback(msg.payload)
-                except Exception as e:
-                    logger.error(f"Erro no frame_callback: {e}")
+        """
+        Handles player action messages from MQTT terminals.
+        Expected topic: blackjack/player/{player_id}/action
+        Expected payload: "hit" or "stand"
+        """
+        try:
+            parts = msg.topic.split('/')
+            if len(parts) == 4 and parts[0] == 'blackjack' and parts[1] == 'player' and parts[3] == 'action':
+                player_id = parts[2]
+                action = msg.payload.decode('utf-8').strip().lower()
+                logger.info(f'MQTT action: player={player_id} action={action}')
+                if self._action_callback and (
+                    action in ('hit', 'stand', 'split', 'double') or action.startswith('bet:')
+                ):
+                    self._action_callback(player_id, action)
+        except Exception as e:
+            logger.error(f'Erro processando mensagem MQTT: {e}')
 
-    # ------------------------------------------------------------------ #
-    # Controle de conexão
-    # ------------------------------------------------------------------ #
-    def start(self, frame_callback: Callable[[bytes], None]):
-        self._frame_callback = frame_callback
-        self._client.connect_async(MQTT_BROKER_HOST, MQTT_BROKER_PORT, keepalive=60)
-        self._client.loop_start()
-        logger.info("Loop MQTT iniciado.")
+    # ── Connection control ─────────────────────────────────────────────────
 
-    def stop(self):
-        self.publish_status("offline")
+    def connect(self, action_callback: Optional[Callable[[str, str], None]] = None):
+        self._action_callback = action_callback
+        try:
+            self._client.connect_async(MQTT_BROKER_HOST, MQTT_BROKER_PORT, keepalive=60)
+            self._client.loop_start()
+            logger.info('Loop MQTT iniciado')
+        except Exception as e:
+            logger.warning(f'MQTT não disponível: {e}')
+
+    def disconnect(self):
         self._client.loop_stop()
         self._client.disconnect()
-        logger.info("MQTT desconectado.")
+        logger.info('MQTT desconectado')
 
     @property
     def is_connected(self) -> bool:
         return self._connected
 
-    # ------------------------------------------------------------------ #
-    # Publicação
-    # ------------------------------------------------------------------ #
-    def publish_result(self, result: dict):
-        payload = json.dumps(result, ensure_ascii=False)
-        self._client.publish(MQTT_TOPIC_RESULT, payload, qos=1)
-        logger.info(f"Resultado publicado: {payload[:120]}")
+    # ── Publishing ─────────────────────────────────────────────────────────
 
-    def publish_status(self, status: str, detail: str = ""):
-        payload = json.dumps({"status": status, "detail": detail, "timestamp": time.time()})
-        self._client.publish(MQTT_TOPIC_STATUS, payload, qos=0)
-
-    def publish_frame(self, image_bytes: bytes):
-        """Publica frame de imagem (usado pelo publisher simulado)."""
-        self._client.publish(MQTT_TOPIC_FRAME, image_bytes, qos=1)
-        logger.debug(f"Frame publicado ({len(image_bytes)} bytes)")
-
-
-# Instância global
-mqtt_manager = MQTTManager()
+    def publish(self, topic: str, payload: dict, qos: int = 1):
+        if not self._connected:
+            return
+        try:
+            self._client.publish(topic, json.dumps(payload, ensure_ascii=False), qos=qos)
+        except Exception as e:
+            logger.warning(f'Erro ao publicar em {topic!r}: {e}')

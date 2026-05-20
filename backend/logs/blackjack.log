@@ -1,0 +1,845 @@
+2026-05-19 17:37:52.632 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:37:52.632 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:37:52.634 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:37:52.634 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:38:07.213 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 17:38:07.214 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 17:38:07.214 | INFO     | app.pipeline:process_frame:27 - [415297b5] Processando frame (28050 bytes)...
+2026-05-19 17:38:07.215 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 17:38:07.215 | INFO     | app.pipeline:process_frame:27 - [b37e8fea] Processando frame (28050 bytes)...
+2026-05-19 17:38:07.232 | INFO     | app.pipeline:process_frame:38 - [b37e8fea] Contornos detectados: 1
+2026-05-19 17:38:07.234 | INFO     | app.pipeline:process_frame:38 - [415297b5] Contornos detectados: 1
+2026-05-19 17:38:07.492 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:85 - OCR canto: '' (conf=0.00)
+2026-05-19 17:38:07.492 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:95 - Rank não detectado pelo OCR, retornando None.
+2026-05-19 17:38:07.493 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "b37e8fea", "timestamp": 1779223087.4934635, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 17:38:07.493 | INFO     | app.pipeline:process_frame:90 - [b37e8fea] Resultado: 1 carta(s), total=0, 0.278s
+2026-05-19 17:38:07.494 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:85 - OCR canto: '' (conf=0.00)
+2026-05-19 17:38:07.495 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:95 - Rank não detectado pelo OCR, retornando None.
+2026-05-19 17:38:07.496 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "415297b5", "timestamp": 1779223087.4959078, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 17:38:07.496 | INFO     | app.pipeline:process_frame:90 - [415297b5] Resultado: 1 carta(s), total=0, 0.281s
+2026-05-19 17:39:02.190 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:39:02.191 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:39:02.191 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:39:02.820 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:39:02.821 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:39:02.821 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:39:02.821 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:39:03.328 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:39:03.329 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:39:03.330 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:39:03.332 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:41:17.818 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:41:17.819 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:41:17.819 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:41:18.310 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:41:18.310 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:41:18.311 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:41:18.313 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:41:34.958 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:41:34.959 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:41:34.959 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:41:35.456 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:41:35.456 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:41:35.457 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:41:35.459 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:42:18.606 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:42:18.607 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:42:18.607 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:42:19.171 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:42:19.172 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:42:19.172 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:42:19.173 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:42:31.809 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:42:31.810 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:42:31.810 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:42:32.321 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:42:32.322 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:42:32.323 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:42:32.323 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:42:41.335 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:89 - OCR canto: '' (conf=0.00)
+2026-05-19 17:42:41.335 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:99 - Rank não detectado pelo OCR, retornando None.
+2026-05-19 17:43:23.621 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:43:23.622 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:43:23.622 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:43:24.223 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:43:24.223 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:43:24.224 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:43:24.225 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:43:32.723 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:98 - OCR canto: '' (conf=0.00)
+2026-05-19 17:43:32.724 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:108 - Rank não detectado pelo OCR, retornando None.
+2026-05-19 17:45:41.547 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:45:41.547 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:45:41.547 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:45:42.113 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:45:42.114 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:45:42.115 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:45:42.116 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:46:44.196 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:46:44.197 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:46:44.197 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:46:44.841 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:46:44.841 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:46:44.843 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:46:44.843 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:48:10.520 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:48:10.520 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:48:10.520 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:48:11.152 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:48:11.153 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:48:11.154 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:48:11.154 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:48:29.720 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:48:29.721 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:48:29.721 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:48:30.229 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:48:30.230 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:48:30.231 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:48:30.231 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:48:30.802 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:48:30.802 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:48:30.803 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:48:30.804 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:49:15.452 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:49:15.452 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:49:15.452 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:49:15.920 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:49:15.921 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:49:16.490 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:49:16.490 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:49:16.491 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:49:16.491 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:50:17.225 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:50:17.225 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:50:17.225 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:50:17.758 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:50:17.758 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:50:18.263 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:50:18.264 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:50:18.272 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:50:18.272 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:51:25.807 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 17:51:25.808 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 17:51:25.808 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 17:51:26.500 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 17:51:26.500 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 17:51:26.501 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 17:51:26.501 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 17:51:32.156 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10' (conf=0.80)
+2026-05-19 17:52:08.774 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 17:52:08.775 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 17:52:08.775 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 17:52:08.775 | INFO     | app.pipeline:process_frame:27 - [269a42fc] Processando frame (28050 bytes)...
+2026-05-19 17:52:08.776 | INFO     | app.pipeline:process_frame:27 - [7e315c8d] Processando frame (28050 bytes)...
+2026-05-19 17:52:08.793 | INFO     | app.pipeline:process_frame:38 - [269a42fc] Contornos detectados: 1
+2026-05-19 17:52:08.794 | INFO     | app.pipeline:process_frame:38 - [7e315c8d] Contornos detectados: 1
+2026-05-19 17:52:08.945 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:52:08.946 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "269a42fc", "timestamp": 1779223928.946702, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 17:52:08.947 | INFO     | app.pipeline:process_frame:90 - [269a42fc] Resultado: 1 carta(s), total=10, 0.171s
+2026-05-19 17:52:08.948 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:52:08.949 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "7e315c8d", "timestamp": 1779223928.9492447, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 17:52:08.949 | INFO     | app.pipeline:process_frame:90 - [7e315c8d] Resultado: 1 carta(s), total=10, 0.173s
+2026-05-19 17:52:57.582 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 17:52:57.582 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 17:52:57.583 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 17:52:57.583 | INFO     | app.pipeline:process_frame:27 - [4c50e4ae] Processando frame (28050 bytes)...
+2026-05-19 17:52:57.583 | INFO     | app.pipeline:process_frame:27 - [19c49ba1] Processando frame (28050 bytes)...
+2026-05-19 17:52:57.593 | INFO     | app.pipeline:process_frame:38 - [4c50e4ae] Contornos detectados: 1
+2026-05-19 17:52:57.595 | INFO     | app.pipeline:process_frame:38 - [19c49ba1] Contornos detectados: 1
+2026-05-19 17:52:57.763 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:52:57.764 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:52:57.766 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "19c49ba1", "timestamp": 1779223977.7660658, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 17:52:57.766 | INFO     | app.pipeline:process_frame:90 - [19c49ba1] Resultado: 1 carta(s), total=10, 0.182s
+2026-05-19 17:52:57.766 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "4c50e4ae", "timestamp": 1779223977.7664976, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 17:52:57.767 | INFO     | app.pipeline:process_frame:90 - [4c50e4ae] Resultado: 1 carta(s), total=10, 0.183s
+2026-05-19 17:54:04.470 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 17:54:04.470 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 17:54:04.470 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 17:54:04.471 | INFO     | app.pipeline:process_frame:27 - [b7f4550a] Processando frame (26506 bytes)...
+2026-05-19 17:54:04.471 | INFO     | app.pipeline:process_frame:27 - [3b8866f8] Processando frame (26506 bytes)...
+2026-05-19 17:54:04.477 | INFO     | app.pipeline:process_frame:38 - [3b8866f8] Contornos detectados: 1
+2026-05-19 17:54:04.478 | INFO     | app.pipeline:process_frame:38 - [b7f4550a] Contornos detectados: 1
+2026-05-19 17:54:04.653 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: 'A7' (conf=0.80)
+2026-05-19 17:54:04.653 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: 'A7' (conf=0.80)
+2026-05-19 17:54:04.655 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "3b8866f8", "timestamp": 1779224044.655525, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", "
+2026-05-19 17:54:04.656 | INFO     | app.pipeline:process_frame:90 - [3b8866f8] Resultado: 1 carta(s), total=11, 0.184s
+2026-05-19 17:54:04.657 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "b7f4550a", "timestamp": 1779224044.6574566, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", 
+2026-05-19 17:54:04.658 | INFO     | app.pipeline:process_frame:90 - [b7f4550a] Resultado: 1 carta(s), total=11, 0.186s
+2026-05-19 17:58:27.376 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 17:58:27.376 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 17:58:27.376 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 17:58:27.377 | INFO     | app.pipeline:process_frame:27 - [5dc45b78] Processando frame (28050 bytes)...
+2026-05-19 17:58:27.377 | INFO     | app.pipeline:process_frame:27 - [b6587dae] Processando frame (28050 bytes)...
+2026-05-19 17:58:27.386 | INFO     | app.pipeline:process_frame:38 - [5dc45b78] Contornos detectados: 1
+2026-05-19 17:58:27.392 | INFO     | app.pipeline:process_frame:38 - [b6587dae] Contornos detectados: 1
+2026-05-19 17:58:27.559 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:58:27.560 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:58:27.560 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "5dc45b78", "timestamp": 1779224307.560716, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 17:58:27.561 | INFO     | app.pipeline:process_frame:90 - [5dc45b78] Resultado: 1 carta(s), total=10, 0.184s
+2026-05-19 17:58:27.561 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "b6587dae", "timestamp": 1779224307.5613604, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 17:58:27.561 | INFO     | app.pipeline:process_frame:90 - [b6587dae] Resultado: 1 carta(s), total=10, 0.184s
+2026-05-19 17:58:42.672 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 17:58:42.673 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 17:58:42.673 | INFO     | app.pipeline:process_frame:27 - [a4c04ecf] Processando frame (28050 bytes)...
+2026-05-19 17:58:42.673 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 17:58:42.674 | INFO     | app.pipeline:process_frame:27 - [ad6852f0] Processando frame (28050 bytes)...
+2026-05-19 17:58:42.683 | INFO     | app.pipeline:process_frame:38 - [ad6852f0] Contornos detectados: 1
+2026-05-19 17:58:42.689 | INFO     | app.pipeline:process_frame:38 - [a4c04ecf] Contornos detectados: 1
+2026-05-19 17:58:42.835 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:58:42.835 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:58:42.836 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "ad6852f0", "timestamp": 1779224322.8358903, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 17:58:42.836 | INFO     | app.pipeline:process_frame:90 - [ad6852f0] Resultado: 1 carta(s), total=10, 0.162s
+2026-05-19 17:58:42.836 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "a4c04ecf", "timestamp": 1779224322.8364375, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 17:58:42.836 | INFO     | app.pipeline:process_frame:90 - [a4c04ecf] Resultado: 1 carta(s), total=10, 0.163s
+2026-05-19 17:59:40.518 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 17:59:40.518 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 17:59:40.519 | INFO     | app.pipeline:process_frame:27 - [bbb2bfe6] Processando frame (28050 bytes)...
+2026-05-19 17:59:40.519 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 17:59:40.519 | INFO     | app.pipeline:process_frame:27 - [07698f95] Processando frame (28050 bytes)...
+2026-05-19 17:59:40.527 | INFO     | app.pipeline:process_frame:38 - [bbb2bfe6] Contornos detectados: 1
+2026-05-19 17:59:40.528 | INFO     | app.pipeline:process_frame:38 - [07698f95] Contornos detectados: 1
+2026-05-19 17:59:40.672 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:59:40.673 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "07698f95", "timestamp": 1779224380.673326, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 17:59:40.673 | INFO     | app.pipeline:process_frame:90 - [07698f95] Resultado: 1 carta(s), total=10, 0.153s
+2026-05-19 17:59:40.674 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 17:59:40.675 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "bbb2bfe6", "timestamp": 1779224380.6756554, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 17:59:40.675 | INFO     | app.pipeline:process_frame:90 - [bbb2bfe6] Resultado: 1 carta(s), total=10, 0.156s
+2026-05-19 18:01:52.800 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:01:52.800 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:01:52.800 | INFO     | app.pipeline:process_frame:27 - [02bba653] Processando frame (28050 bytes)...
+2026-05-19 18:01:52.801 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:01:52.801 | INFO     | app.pipeline:process_frame:27 - [e5d87af7] Processando frame (28050 bytes)...
+2026-05-19 18:01:52.809 | INFO     | app.pipeline:process_frame:38 - [e5d87af7] Contornos detectados: 1
+2026-05-19 18:01:52.810 | INFO     | app.pipeline:process_frame:38 - [02bba653] Contornos detectados: 1
+2026-05-19 18:01:52.968 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:01:52.969 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "02bba653", "timestamp": 1779224512.9689841, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:01:52.969 | INFO     | app.pipeline:process_frame:90 - [02bba653] Resultado: 1 carta(s), total=10, 0.168s
+2026-05-19 18:01:52.970 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:01:52.971 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "e5d87af7", "timestamp": 1779224512.9711916, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:01:52.971 | INFO     | app.pipeline:process_frame:90 - [e5d87af7] Resultado: 1 carta(s), total=10, 0.17s
+2026-05-19 18:02:11.251 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:02:11.251 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:02:11.251 | INFO     | app.pipeline:process_frame:27 - [5d1d9fdc] Processando frame (28050 bytes)...
+2026-05-19 18:02:11.252 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:02:11.252 | INFO     | app.pipeline:process_frame:27 - [1eebfc1c] Processando frame (28050 bytes)...
+2026-05-19 18:02:11.261 | INFO     | app.pipeline:process_frame:38 - [5d1d9fdc] Contornos detectados: 1
+2026-05-19 18:02:11.262 | INFO     | app.pipeline:process_frame:38 - [1eebfc1c] Contornos detectados: 1
+2026-05-19 18:02:11.415 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:02:11.416 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:02:11.416 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "1eebfc1c", "timestamp": 1779224531.416586, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 18:02:11.416 | INFO     | app.pipeline:process_frame:90 - [1eebfc1c] Resultado: 1 carta(s), total=10, 0.164s
+2026-05-19 18:02:11.417 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "5d1d9fdc", "timestamp": 1779224531.4177635, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:02:11.418 | INFO     | app.pipeline:process_frame:90 - [5d1d9fdc] Resultado: 1 carta(s), total=10, 0.166s
+2026-05-19 18:02:53.851 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:02:53.852 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:02:53.852 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:02:53.852 | INFO     | app.pipeline:process_frame:27 - [7ae639c1] Processando frame (28050 bytes)...
+2026-05-19 18:02:53.852 | INFO     | app.pipeline:process_frame:27 - [143b90bf] Processando frame (28050 bytes)...
+2026-05-19 18:02:53.862 | INFO     | app.pipeline:process_frame:38 - [143b90bf] Contornos detectados: 1
+2026-05-19 18:02:53.864 | INFO     | app.pipeline:process_frame:38 - [7ae639c1] Contornos detectados: 1
+2026-05-19 18:02:54.033 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:02:54.034 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:02:54.035 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "7ae639c1", "timestamp": 1779224574.0357585, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:02:54.036 | INFO     | app.pipeline:process_frame:90 - [7ae639c1] Resultado: 1 carta(s), total=10, 0.183s
+2026-05-19 18:02:54.038 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "143b90bf", "timestamp": 1779224574.037865, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 18:02:54.038 | INFO     | app.pipeline:process_frame:90 - [143b90bf] Resultado: 1 carta(s), total=10, 0.185s
+2026-05-19 18:03:02.303 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:03:02.303 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:03:02.304 | INFO     | app.pipeline:process_frame:27 - [48ffe28e] Processando frame (26506 bytes)...
+2026-05-19 18:03:02.304 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:03:02.305 | INFO     | app.pipeline:process_frame:27 - [9501efbb] Processando frame (26506 bytes)...
+2026-05-19 18:03:02.310 | INFO     | app.pipeline:process_frame:38 - [9501efbb] Contornos detectados: 1
+2026-05-19 18:03:02.311 | INFO     | app.pipeline:process_frame:38 - [48ffe28e] Contornos detectados: 1
+2026-05-19 18:03:02.490 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: 'A7' (conf=0.80)
+2026-05-19 18:03:02.491 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: 'A7' (conf=0.80)
+2026-05-19 18:03:02.492 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "48ffe28e", "timestamp": 1779224582.491887, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", "
+2026-05-19 18:03:02.492 | INFO     | app.pipeline:process_frame:90 - [48ffe28e] Resultado: 1 carta(s), total=11, 0.188s
+2026-05-19 18:03:02.494 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "9501efbb", "timestamp": 1779224582.4940033, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", 
+2026-05-19 18:03:02.494 | INFO     | app.pipeline:process_frame:90 - [9501efbb] Resultado: 1 carta(s), total=11, 0.189s
+2026-05-19 18:03:07.401 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:03:07.401 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:03:07.401 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:03:07.401 | INFO     | app.pipeline:process_frame:27 - [094aec49] Processando frame (28050 bytes)...
+2026-05-19 18:03:07.402 | INFO     | app.pipeline:process_frame:27 - [7f1a7d9c] Processando frame (28050 bytes)...
+2026-05-19 18:03:07.410 | INFO     | app.pipeline:process_frame:38 - [094aec49] Contornos detectados: 1
+2026-05-19 18:03:07.412 | INFO     | app.pipeline:process_frame:38 - [7f1a7d9c] Contornos detectados: 1
+2026-05-19 18:03:07.581 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:03:07.582 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:03:07.583 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "7f1a7d9c", "timestamp": 1779224587.582943, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 18:03:07.583 | INFO     | app.pipeline:process_frame:90 - [7f1a7d9c] Resultado: 1 carta(s), total=10, 0.181s
+2026-05-19 18:03:07.584 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "094aec49", "timestamp": 1779224587.5843687, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:03:07.584 | INFO     | app.pipeline:process_frame:90 - [094aec49] Resultado: 1 carta(s), total=10, 0.182s
+2026-05-19 18:06:58.273 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:06:58.274 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:06:58.274 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:06:58.832 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:06:58.833 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:06:58.833 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:06:58.834 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:07:56.085 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:07:56.085 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:07:56.086 | INFO     | app.pipeline:process_frame:27 - [e0db5ceb] Processando frame (28050 bytes)...
+2026-05-19 18:07:56.087 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:07:56.087 | INFO     | app.pipeline:process_frame:27 - [f4ae3c26] Processando frame (28050 bytes)...
+2026-05-19 18:07:56.104 | INFO     | app.pipeline:process_frame:38 - [f4ae3c26] Contornos detectados: 1
+2026-05-19 18:07:56.106 | INFO     | app.pipeline:process_frame:38 - [e0db5ceb] Contornos detectados: 1
+2026-05-19 18:07:56.312 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:07:56.313 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: '10,' (conf=0.80)
+2026-05-19 18:07:56.315 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "f4ae3c26", "timestamp": 1779224876.3149118, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:07:56.315 | INFO     | app.pipeline:process_frame:90 - [f4ae3c26] Resultado: 1 carta(s), total=10, 0.227s
+2026-05-19 18:07:56.315 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "e0db5ceb", "timestamp": 1779224876.3154228, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:07:56.316 | INFO     | app.pipeline:process_frame:90 - [e0db5ceb] Resultado: 1 carta(s), total=10, 0.229s
+2026-05-19 18:08:40.183 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:08:40.184 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:08:40.184 | INFO     | app.pipeline:process_frame:27 - [9f8b8271] Processando frame (26506 bytes)...
+2026-05-19 18:08:40.185 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:08:40.185 | INFO     | app.pipeline:process_frame:27 - [fcafaa4f] Processando frame (26506 bytes)...
+2026-05-19 18:08:40.191 | INFO     | app.pipeline:process_frame:38 - [fcafaa4f] Contornos detectados: 1
+2026-05-19 18:08:40.193 | INFO     | app.pipeline:process_frame:38 - [9f8b8271] Contornos detectados: 1
+2026-05-19 18:08:40.431 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: 'A7' (conf=0.80)
+2026-05-19 18:08:40.432 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:91 - Rank não detectado pelo OCR, retornando None.
+2026-05-19 18:08:40.434 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "fcafaa4f", "timestamp": 1779224920.4346504, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:08:40.435 | INFO     | app.pipeline:process_frame:90 - [fcafaa4f] Resultado: 1 carta(s), total=0, 0.249s
+2026-05-19 18:08:40.444 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:81 - OCR canto: 'A7' (conf=0.80)
+2026-05-19 18:08:40.444 | DEBUG    | app.card_detector:extract_rank_and_suit_from_corner:91 - Rank não detectado pelo OCR, retornando None.
+2026-05-19 18:08:40.447 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "9f8b8271", "timestamp": 1779224920.4467854, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:08:40.447 | INFO     | app.pipeline:process_frame:90 - [9f8b8271] Resultado: 1 carta(s), total=0, 0.262s
+2026-05-19 18:18:35.801 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:18:35.801 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:18:35.801 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:18:36.398 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:18:36.399 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:18:36.399 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:18:36.399 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:18:44.882 | DEBUG    | app.card_detector:_try_ocr_zone:176 - OCR rank=10 scale=2x psm=7 text='lO ae'
+2026-05-19 18:18:45.266 | DEBUG    | app.card_detector:_try_ocr_zone:176 - OCR rank=10 scale=2x psm=7 text='10'
+2026-05-19 18:18:52.141 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:18:52.141 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:18:52.141 | INFO     | app.pipeline:process_frame:27 - [c7a07fb9] Processando frame (26506 bytes)...
+2026-05-19 18:18:52.142 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:18:52.142 | INFO     | app.pipeline:process_frame:27 - [cc599ea9] Processando frame (26506 bytes)...
+2026-05-19 18:18:52.148 | INFO     | app.pipeline:process_frame:38 - [c7a07fb9] Contornos detectados: 1
+2026-05-19 18:18:52.148 | INFO     | app.pipeline:process_frame:38 - [cc599ea9] Contornos detectados: 1
+2026-05-19 18:18:52.353 | DEBUG    | app.card_detector:_try_ocr_zone:176 - OCR rank=10 scale=2x psm=7 text='10'
+2026-05-19 18:18:52.355 | DEBUG    | app.card_detector:_try_ocr_zone:176 - OCR rank=10 scale=2x psm=7 text='10'
+2026-05-19 18:18:52.521 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "c7a07fb9", "timestamp": 1779225532.5208175, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:18:52.521 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "cc599ea9", "timestamp": 1779225532.520989, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 18:18:52.521 | INFO     | app.pipeline:process_frame:90 - [c7a07fb9] Resultado: 1 carta(s), total=10, 0.379s
+2026-05-19 18:18:52.521 | INFO     | app.pipeline:process_frame:90 - [cc599ea9] Resultado: 1 carta(s), total=10, 0.378s
+2026-05-19 18:18:52.550 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:18:52.551 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:18:52.551 | INFO     | app.pipeline:process_frame:27 - [a8794113] Processando frame (28050 bytes)...
+2026-05-19 18:18:52.551 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:18:52.552 | INFO     | app.pipeline:process_frame:27 - [6a2af674] Processando frame (28050 bytes)...
+2026-05-19 18:18:52.560 | INFO     | app.pipeline:process_frame:38 - [a8794113] Contornos detectados: 1
+2026-05-19 18:18:52.561 | INFO     | app.pipeline:process_frame:38 - [6a2af674] Contornos detectados: 1
+2026-05-19 18:19:05.193 | DEBUG    | app.card_detector:_try_ocr_zone:176 - OCR rank=A scale=3x psm=7 text='a ;'
+2026-05-19 18:19:05.202 | DEBUG    | app.card_detector:_try_ocr_zone:176 - OCR rank=A scale=3x psm=7 text='a ;'
+2026-05-19 18:19:05.294 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "6a2af674", "timestamp": 1779225545.2947114, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", 
+2026-05-19 18:19:05.294 | INFO     | app.pipeline:process_frame:90 - [6a2af674] Resultado: 1 carta(s), total=11, 12.743s
+2026-05-19 18:19:05.305 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "a8794113", "timestamp": 1779225545.3055942, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", 
+2026-05-19 18:19:05.305 | INFO     | app.pipeline:process_frame:90 - [a8794113] Resultado: 1 carta(s), total=11, 12.754s
+2026-05-19 18:19:47.542 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:19:47.543 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:19:47.543 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:19:48.141 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:19:48.142 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:19:48.143 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:19:48.143 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:21:40.793 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:21:40.794 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:21:40.794 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:21:41.285 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:21:41.286 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:21:41.287 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:21:41.287 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:21:52.007 | DEBUG    | app.card_detector:_try_ocr_zone:196 - OCR slow-path rank=J scale=2x psm=6
+2026-05-19 18:21:52.303 | DEBUG    | app.card_detector:_try_ocr_zone:155 - OCR fast-path rank=10
+2026-05-19 18:25:22.084 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:25:22.085 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:25:22.085 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:25:22.557 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:25:22.557 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:25:22.558 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:25:22.559 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:25:31.204 | DEBUG    | app.card_detector:_try_ocr_zone:168 - OCR fast-path B (left55%+OTSU) rank=10
+2026-05-19 18:25:31.540 | DEBUG    | app.card_detector:_try_ocr_zone:155 - OCR fast-path A rank=10
+2026-05-19 18:25:38.638 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:25:38.638 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:25:38.639 | INFO     | app.pipeline:process_frame:27 - [52ea4bf8] Processando frame (28050 bytes)...
+2026-05-19 18:25:38.639 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:25:38.640 | INFO     | app.pipeline:process_frame:27 - [5021756f] Processando frame (28050 bytes)...
+2026-05-19 18:25:38.656 | INFO     | app.pipeline:process_frame:38 - [52ea4bf8] Contornos detectados: 1
+2026-05-19 18:25:38.658 | INFO     | app.pipeline:process_frame:38 - [5021756f] Contornos detectados: 1
+2026-05-19 18:25:55.565 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "5021756f", "timestamp": 1779225955.565385, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null, 
+2026-05-19 18:25:55.565 | INFO     | app.pipeline:process_frame:90 - [5021756f] Resultado: 1 carta(s), total=0, 16.925s
+2026-05-19 18:25:55.586 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "52ea4bf8", "timestamp": 1779225955.585974, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null, 
+2026-05-19 18:25:55.586 | INFO     | app.pipeline:process_frame:90 - [52ea4bf8] Resultado: 1 carta(s), total=0, 16.947s
+2026-05-19 18:25:55.601 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:25:55.601 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:25:55.601 | INFO     | app.pipeline:process_frame:27 - [65a5fe87] Processando frame (26506 bytes)...
+2026-05-19 18:25:55.605 | INFO     | app.pipeline:process_frame:38 - [65a5fe87] Contornos detectados: 1
+2026-05-19 18:25:55.647 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:25:55.648 | INFO     | app.pipeline:process_frame:27 - [0ac5a109] Processando frame (26506 bytes)...
+2026-05-19 18:25:55.654 | INFO     | app.pipeline:process_frame:38 - [0ac5a109] Contornos detectados: 1
+2026-05-19 18:25:55.782 | DEBUG    | app.card_detector:_try_ocr_zone:155 - OCR fast-path A rank=10
+2026-05-19 18:25:55.797 | DEBUG    | app.card_detector:_try_ocr_zone:155 - OCR fast-path A rank=10
+2026-05-19 18:25:55.861 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "65a5fe87", "timestamp": 1779225955.861376, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 18:25:55.861 | INFO     | app.pipeline:process_frame:90 - [65a5fe87] Resultado: 1 carta(s), total=10, 0.259s
+2026-05-19 18:25:55.873 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "0ac5a109", "timestamp": 1779225955.8732321, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:25:55.873 | INFO     | app.pipeline:process_frame:90 - [0ac5a109] Resultado: 1 carta(s), total=10, 0.225s
+2026-05-19 18:26:17.592 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:26:17.592 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:26:17.592 | INFO     | app.pipeline:process_frame:27 - [16b48ae0] Processando frame (28050 bytes)...
+2026-05-19 18:26:17.592 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:26:17.593 | INFO     | app.pipeline:process_frame:27 - [88bbab84] Processando frame (28050 bytes)...
+2026-05-19 18:26:17.600 | INFO     | app.pipeline:process_frame:38 - [16b48ae0] Contornos detectados: 1
+2026-05-19 18:26:17.601 | INFO     | app.pipeline:process_frame:38 - [88bbab84] Contornos detectados: 1
+2026-05-19 18:26:34.413 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "16b48ae0", "timestamp": 1779225994.413831, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null, 
+2026-05-19 18:26:34.414 | INFO     | app.pipeline:process_frame:90 - [16b48ae0] Resultado: 1 carta(s), total=0, 16.821s
+2026-05-19 18:26:34.417 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "88bbab84", "timestamp": 1779225994.4172297, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:26:34.417 | INFO     | app.pipeline:process_frame:90 - [88bbab84] Resultado: 1 carta(s), total=0, 16.824s
+2026-05-19 18:27:08.315 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:27:08.315 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:27:08.315 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:27:25.343 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:27:25.343 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:27:25.345 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:27:25.346 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:27:28.681 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:27:28.681 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:27:28.682 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:27:28.682 | INFO     | app.pipeline:process_frame:27 - [262b1c6b] Processando frame (28050 bytes)...
+2026-05-19 18:27:28.682 | INFO     | app.pipeline:process_frame:27 - [e232b049] Processando frame (28050 bytes)...
+2026-05-19 18:27:28.698 | INFO     | app.pipeline:process_frame:38 - [262b1c6b] Contornos detectados: 1
+2026-05-19 18:27:28.699 | INFO     | app.pipeline:process_frame:38 - [e232b049] Contornos detectados: 1
+2026-05-19 18:27:45.124 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "262b1c6b", "timestamp": 1779226065.1244414, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:27:45.124 | INFO     | app.pipeline:process_frame:90 - [262b1c6b] Resultado: 1 carta(s), total=0, 16.442s
+2026-05-19 18:27:45.126 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:27:45.127 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:27:45.127 | INFO     | app.pipeline:process_frame:27 - [76935dcd] Processando frame (28050 bytes)...
+2026-05-19 18:27:45.128 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "e232b049", "timestamp": 1779226065.1281042, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:27:45.128 | INFO     | app.pipeline:process_frame:90 - [e232b049] Resultado: 1 carta(s), total=0, 16.445s
+2026-05-19 18:27:45.128 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:27:45.128 | INFO     | app.pipeline:process_frame:27 - [aced3576] Processando frame (28050 bytes)...
+2026-05-19 18:27:45.131 | INFO     | app.pipeline:process_frame:38 - [76935dcd] Contornos detectados: 1
+2026-05-19 18:27:45.133 | INFO     | app.pipeline:process_frame:38 - [aced3576] Contornos detectados: 1
+2026-05-19 18:28:01.377 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "76935dcd", "timestamp": 1779226081.3771596, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:28:01.377 | INFO     | app.pipeline:process_frame:90 - [76935dcd] Resultado: 1 carta(s), total=0, 16.25s
+2026-05-19 18:28:01.378 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:28:01.378 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:28:01.378 | INFO     | app.pipeline:process_frame:27 - [3a768976] Processando frame (28050 bytes)...
+2026-05-19 18:28:01.381 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "aced3576", "timestamp": 1779226081.3816516, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:28:01.381 | INFO     | app.pipeline:process_frame:90 - [aced3576] Resultado: 1 carta(s), total=0, 16.253s
+2026-05-19 18:28:01.382 | INFO     | app.pipeline:process_frame:38 - [3a768976] Contornos detectados: 1
+2026-05-19 18:28:01.382 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:28:01.383 | INFO     | app.pipeline:process_frame:27 - [a0058f76] Processando frame (28050 bytes)...
+2026-05-19 18:28:01.386 | INFO     | app.pipeline:process_frame:38 - [a0058f76] Contornos detectados: 1
+2026-05-19 18:28:17.423 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "a0058f76", "timestamp": 1779226097.4238136, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:28:17.424 | INFO     | app.pipeline:process_frame:90 - [a0058f76] Resultado: 1 carta(s), total=0, 16.041s
+2026-05-19 18:28:17.426 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "3a768976", "timestamp": 1779226097.4262357, "cards_detected": 1, "cards": [{"card_index": 0, "rank": null,
+2026-05-19 18:28:17.426 | INFO     | app.pipeline:process_frame:90 - [3a768976] Resultado: 1 carta(s), total=0, 16.047s
+2026-05-19 18:28:17.439 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:28:17.439 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:28:17.439 | INFO     | app.pipeline:process_frame:27 - [16567a8c] Processando frame (26506 bytes)...
+2026-05-19 18:28:17.444 | INFO     | app.pipeline:process_frame:38 - [16567a8c] Contornos detectados: 1
+2026-05-19 18:28:17.507 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:28:17.508 | INFO     | app.pipeline:process_frame:27 - [a61e2eec] Processando frame (26506 bytes)...
+2026-05-19 18:28:17.511 | INFO     | app.pipeline:process_frame:38 - [a61e2eec] Contornos detectados: 1
+2026-05-19 18:28:17.549 | DEBUG    | app.card_detector:_try_ocr_zone:155 - OCR fast-path A rank=10
+2026-05-19 18:28:17.617 | DEBUG    | app.card_detector:_try_ocr_zone:155 - OCR fast-path A rank=10
+2026-05-19 18:28:17.660 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "16567a8c", "timestamp": 1779226097.6601007, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:28:17.660 | INFO     | app.pipeline:process_frame:90 - [16567a8c] Resultado: 1 carta(s), total=10, 0.221s
+2026-05-19 18:28:17.721 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "a61e2eec", "timestamp": 1779226097.7207785, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:28:17.721 | INFO     | app.pipeline:process_frame:90 - [a61e2eec] Resultado: 1 carta(s), total=10, 0.213s
+2026-05-19 18:33:46.669 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:33:46.669 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:33:46.669 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:33:47.021 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:33:47.021 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:33:47.022 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:33:47.022 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:33:55.445 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:33:55.445 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:33:55.445 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:34:48.098 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:34:48.099 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:34:48.103 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:34:48.103 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:36:39.231 | DEBUG    | app.card_detector:_try_ocr_zone:174 - OCR fast-path C (left55%+inv200) rank=10
+2026-05-19 18:37:49.739 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:37:49.739 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:37:49.739 | INFO     | app.pipeline:process_frame:27 - [f475d4e2] Processando frame (28050 bytes)...
+2026-05-19 18:37:49.739 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:37:49.739 | INFO     | app.pipeline:process_frame:27 - [f91ad479] Processando frame (28050 bytes)...
+2026-05-19 18:37:49.744 | INFO     | app.pipeline:process_frame:38 - [f475d4e2] Contornos detectados: 1
+2026-05-19 18:37:49.744 | INFO     | app.pipeline:process_frame:38 - [f91ad479] Contornos detectados: 1
+2026-05-19 18:37:57.545 | DEBUG    | app.card_detector:_try_ocr_zone:174 - OCR fast-path C (left55%+inv200) rank=10
+2026-05-19 18:37:57.551 | DEBUG    | app.card_detector:_try_ocr_zone:174 - OCR fast-path C (left55%+inv200) rank=10
+2026-05-19 18:37:57.617 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "f91ad479", "timestamp": 1779226677.6169531, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:37:57.617 | INFO     | app.pipeline:process_frame:90 - [f91ad479] Resultado: 1 carta(s), total=10, 7.877s
+2026-05-19 18:37:57.624 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "f475d4e2", "timestamp": 1779226677.6239233, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:37:57.624 | INFO     | app.pipeline:process_frame:90 - [f475d4e2] Resultado: 1 carta(s), total=10, 7.884s
+2026-05-19 18:38:42.316 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:38:42.316 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:38:42.316 | INFO     | app.pipeline:process_frame:27 - [c50eaf10] Processando frame (26506 bytes)...
+2026-05-19 18:38:42.317 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:38:42.317 | INFO     | app.pipeline:process_frame:27 - [fb9fe302] Processando frame (26506 bytes)...
+2026-05-19 18:38:42.319 | INFO     | app.pipeline:process_frame:38 - [c50eaf10] Contornos detectados: 1
+2026-05-19 18:38:42.319 | INFO     | app.pipeline:process_frame:38 - [fb9fe302] Contornos detectados: 1
+2026-05-19 18:38:42.379 | DEBUG    | app.card_detector:_try_ocr_zone:147 - OCR fast-path A rank=10
+2026-05-19 18:38:42.380 | DEBUG    | app.card_detector:_try_ocr_zone:147 - OCR fast-path A rank=10
+2026-05-19 18:38:42.448 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "fb9fe302", "timestamp": 1779226722.448734, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 18:38:42.448 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "c50eaf10", "timestamp": 1779226722.4488156, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:38:42.449 | INFO     | app.pipeline:process_frame:90 - [fb9fe302] Resultado: 1 carta(s), total=10, 0.131s
+2026-05-19 18:38:42.449 | INFO     | app.pipeline:process_frame:90 - [c50eaf10] Resultado: 1 carta(s), total=10, 0.132s
+2026-05-19 18:38:57.971 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:38:57.971 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:38:57.972 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:38:57.972 | INFO     | app.pipeline:process_frame:27 - [a90c4052] Processando frame (28050 bytes)...
+2026-05-19 18:38:57.972 | INFO     | app.pipeline:process_frame:27 - [9c2e71cc] Processando frame (28050 bytes)...
+2026-05-19 18:38:57.975 | INFO     | app.pipeline:process_frame:38 - [9c2e71cc] Contornos detectados: 1
+2026-05-19 18:38:57.977 | INFO     | app.pipeline:process_frame:38 - [a90c4052] Contornos detectados: 1
+2026-05-19 18:39:05.782 | DEBUG    | app.card_detector:_try_ocr_zone:174 - OCR fast-path C (left55%+inv200) rank=10
+2026-05-19 18:39:05.785 | DEBUG    | app.card_detector:_try_ocr_zone:174 - OCR fast-path C (left55%+inv200) rank=10
+2026-05-19 18:39:05.849 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "a90c4052", "timestamp": 1779226745.8489478, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:39:05.849 | INFO     | app.pipeline:process_frame:90 - [a90c4052] Resultado: 1 carta(s), total=10, 7.877s
+2026-05-19 18:39:05.852 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "9c2e71cc", "timestamp": 1779226745.8527923, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:39:05.852 | INFO     | app.pipeline:process_frame:90 - [9c2e71cc] Resultado: 1 carta(s), total=10, 7.88s
+2026-05-19 18:40:22.613 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:40:22.614 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:40:22.614 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:40:22.614 | INFO     | app.pipeline:process_frame:27 - [e80afe93] Processando frame (26506 bytes)...
+2026-05-19 18:40:22.614 | INFO     | app.pipeline:process_frame:27 - [7839ee7c] Processando frame (26506 bytes)...
+2026-05-19 18:40:22.619 | INFO     | app.pipeline:process_frame:38 - [7839ee7c] Contornos detectados: 1
+2026-05-19 18:40:22.620 | INFO     | app.pipeline:process_frame:38 - [e80afe93] Contornos detectados: 1
+2026-05-19 18:40:22.684 | DEBUG    | app.card_detector:_try_ocr_zone:147 - OCR fast-path A rank=10
+2026-05-19 18:40:22.687 | DEBUG    | app.card_detector:_try_ocr_zone:147 - OCR fast-path A rank=10
+2026-05-19 18:40:22.750 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "7839ee7c", "timestamp": 1779226822.750454, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", 
+2026-05-19 18:40:22.750 | INFO     | app.pipeline:process_frame:90 - [7839ee7c] Resultado: 1 carta(s), total=10, 0.136s
+2026-05-19 18:40:22.751 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "e80afe93", "timestamp": 1779226822.7518153, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:40:22.752 | INFO     | app.pipeline:process_frame:90 - [e80afe93] Resultado: 1 carta(s), total=10, 0.137s
+2026-05-19 18:40:29.837 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (28050 bytes)
+2026-05-19 18:40:29.837 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (28050 bytes).
+2026-05-19 18:40:29.838 | INFO     | app.pipeline:process_frame:27 - [58d708ab] Processando frame (28050 bytes)...
+2026-05-19 18:40:29.838 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (28050 bytes)
+2026-05-19 18:40:29.838 | INFO     | app.pipeline:process_frame:27 - [26520899] Processando frame (28050 bytes)...
+2026-05-19 18:40:29.844 | INFO     | app.pipeline:process_frame:38 - [26520899] Contornos detectados: 1
+2026-05-19 18:40:29.846 | INFO     | app.pipeline:process_frame:38 - [58d708ab] Contornos detectados: 1
+2026-05-19 18:40:37.360 | DEBUG    | app.card_detector:_try_ocr_zone:174 - OCR fast-path C (left55%+inv200) rank=10
+2026-05-19 18:40:37.363 | DEBUG    | app.card_detector:_try_ocr_zone:174 - OCR fast-path C (left55%+inv200) rank=10
+2026-05-19 18:40:37.431 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "58d708ab", "timestamp": 1779226837.4315464, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:40:37.431 | INFO     | app.pipeline:process_frame:90 - [58d708ab] Resultado: 1 carta(s), total=10, 7.594s
+2026-05-19 18:40:37.433 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "26520899", "timestamp": 1779226837.43384, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10", "
+2026-05-19 18:40:37.434 | INFO     | app.pipeline:process_frame:90 - [26520899] Resultado: 1 carta(s), total=10, 7.595s
+2026-05-19 18:40:43.257 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (26506 bytes)
+2026-05-19 18:40:43.258 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (26506 bytes).
+2026-05-19 18:40:43.258 | INFO     | app.pipeline:process_frame:27 - [13fe55a3] Processando frame (26506 bytes)...
+2026-05-19 18:40:43.258 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (26506 bytes)
+2026-05-19 18:40:43.259 | INFO     | app.pipeline:process_frame:27 - [b08c1e06] Processando frame (26506 bytes)...
+2026-05-19 18:40:43.263 | INFO     | app.pipeline:process_frame:38 - [13fe55a3] Contornos detectados: 1
+2026-05-19 18:40:43.268 | INFO     | app.pipeline:process_frame:38 - [b08c1e06] Contornos detectados: 1
+2026-05-19 18:40:43.339 | DEBUG    | app.card_detector:_try_ocr_zone:147 - OCR fast-path A rank=10
+2026-05-19 18:40:43.343 | DEBUG    | app.card_detector:_try_ocr_zone:147 - OCR fast-path A rank=10
+2026-05-19 18:40:43.407 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "b08c1e06", "timestamp": 1779226843.4077518, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:40:43.407 | INFO     | app.pipeline:process_frame:90 - [b08c1e06] Resultado: 1 carta(s), total=10, 0.148s
+2026-05-19 18:40:43.409 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "13fe55a3", "timestamp": 1779226843.4097066, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "10",
+2026-05-19 18:40:43.409 | INFO     | app.pipeline:process_frame:90 - [13fe55a3] Resultado: 1 carta(s), total=10, 0.151s
+2026-05-19 18:41:49.165 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (9686 bytes)
+2026-05-19 18:41:49.165 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (9686 bytes).
+2026-05-19 18:41:49.165 | INFO     | app.pipeline:process_frame:27 - [5dd7c8b8] Processando frame (9686 bytes)...
+2026-05-19 18:41:49.166 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (9686 bytes)
+2026-05-19 18:41:49.166 | INFO     | app.pipeline:process_frame:27 - [f49d2a40] Processando frame (9686 bytes)...
+2026-05-19 18:41:49.177 | INFO     | app.pipeline:process_frame:38 - [5dd7c8b8] Contornos detectados: 1
+2026-05-19 18:41:49.180 | INFO     | app.pipeline:process_frame:38 - [f49d2a40] Contornos detectados: 1
+2026-05-19 18:41:51.123 | DEBUG    | app.card_detector:_try_ocr_zone:208 - OCR slow-path rank=A scale=2x psm=6
+2026-05-19 18:41:51.125 | DEBUG    | app.card_detector:_try_ocr_zone:208 - OCR slow-path rank=A scale=2x psm=6
+2026-05-19 18:41:51.190 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "5dd7c8b8", "timestamp": 1779226911.190666, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", "
+2026-05-19 18:41:51.190 | INFO     | app.pipeline:process_frame:90 - [5dd7c8b8] Resultado: 1 carta(s), total=11, 2.025s
+2026-05-19 18:41:51.192 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "f49d2a40", "timestamp": 1779226911.1920557, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", 
+2026-05-19 18:41:51.192 | INFO     | app.pipeline:process_frame:90 - [f49d2a40] Resultado: 1 carta(s), total=11, 2.025s
+2026-05-19 18:49:13.869 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:49:13.869 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:49:13.870 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:49:14.266 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:49:14.266 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:49:14.270 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:49:14.270 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:49:40.091 | DEBUG    | app.card_detector:_try_ocr_zone:172 - OCR fast-path PSM10 rank=4
+2026-05-19 18:49:40.270 | DEBUG    | app.card_detector:_try_ocr_zone:190 - OCR fast-path face=A (votos=3/3)
+2026-05-19 18:49:40.328 | DEBUG    | app.card_detector:_try_ocr_zone:172 - OCR fast-path PSM10 rank=5
+2026-05-19 18:49:40.386 | DEBUG    | app.card_detector:_try_ocr_zone:172 - OCR fast-path PSM10 rank=6
+2026-05-19 18:49:40.444 | DEBUG    | app.card_detector:_try_ocr_zone:172 - OCR fast-path PSM10 rank=7
+2026-05-19 18:49:41.355 | DEBUG    | app.card_detector:_try_ocr_zone:254 - OCR slow-path rank=8 scale=2x psm=7
+2026-05-19 18:49:48.623 | DEBUG    | app.card_detector:_try_ocr_zone:190 - OCR fast-path face=A (votos=3/3)
+2026-05-19 18:49:48.794 | DEBUG    | app.card_detector:_try_ocr_zone:190 - OCR fast-path face=J (votos=3/3)
+2026-05-19 18:49:55.942 | DEBUG    | app.card_detector:_try_ocr_zone:190 - OCR fast-path face=K (votos=3/3)
+2026-05-19 18:49:56.356 | DEBUG    | app.card_detector:_try_ocr_zone:217 - OCR fast-path C left55%+inv180 PSM10 rank=4
+2026-05-19 18:50:40.324 | DEBUG    | app.card_detector:_try_ocr_zone:172 - OCR fast-path PSM10 rank=10
+2026-05-19 18:51:27.609 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:51:27.609 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:51:27.609 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:51:27.969 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:51:27.969 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:51:27.969 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:51:27.973 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:51:43.406 | DEBUG    | app.card_detector:_try_ocr_zone:210 - OCR fast-path C left55%+inv200 PSM10 rank=10
+2026-05-19 18:51:43.533 | DEBUG    | app.card_detector:_try_ocr_zone:165 - OCR fast-path PSM10 rank=10
+2026-05-19 18:52:03.173 | DEBUG    | app.card_detector:_try_ocr_zone:165 - OCR fast-path PSM10 rank=7
+2026-05-19 18:52:31.372 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 18:52:31.372 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 18:52:31.372 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 18:52:31.740 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 18:52:31.740 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 18:52:31.741 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 18:52:31.743 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 18:53:09.411 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (9686 bytes)
+2026-05-19 18:53:09.412 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (9686 bytes).
+2026-05-19 18:53:09.412 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (9686 bytes)
+2026-05-19 18:53:09.412 | INFO     | app.pipeline:process_frame:27 - [8a6d909f] Processando frame (9686 bytes)...
+2026-05-19 18:53:09.413 | INFO     | app.pipeline:process_frame:27 - [f0019cc7] Processando frame (9686 bytes)...
+2026-05-19 18:53:09.430 | INFO     | app.pipeline:process_frame:38 - [f0019cc7] Contornos detectados: 1
+2026-05-19 18:53:09.432 | INFO     | app.pipeline:process_frame:38 - [8a6d909f] Contornos detectados: 1
+2026-05-19 18:53:09.687 | DEBUG    | app.card_detector:_try_ocr_zone:199 - OCR fast-path B left55%+adapt PSM10 rank=7
+2026-05-19 18:53:09.688 | DEBUG    | app.card_detector:_try_ocr_zone:199 - OCR fast-path B left55%+adapt PSM10 rank=7
+2026-05-19 18:53:09.751 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "f0019cc7", "timestamp": 1779227589.751441, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "7", "
+2026-05-19 18:53:09.751 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "8a6d909f", "timestamp": 1779227589.7515187, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "7", 
+2026-05-19 18:53:09.751 | INFO     | app.pipeline:process_frame:90 - [f0019cc7] Resultado: 1 carta(s), total=7, 0.338s
+2026-05-19 18:53:09.751 | INFO     | app.pipeline:process_frame:90 - [8a6d909f] Resultado: 1 carta(s), total=7, 0.339s
+2026-05-19 18:54:04.075 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (20759 bytes)
+2026-05-19 18:54:04.075 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (20759 bytes).
+2026-05-19 18:54:04.075 | INFO     | app.pipeline:process_frame:27 - [47d10981] Processando frame (20759 bytes)...
+2026-05-19 18:54:04.076 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (20759 bytes)
+2026-05-19 18:54:04.076 | INFO     | app.pipeline:process_frame:27 - [d33a094c] Processando frame (20759 bytes)...
+2026-05-19 18:54:04.080 | INFO     | app.pipeline:process_frame:38 - [47d10981] Contornos detectados: 0
+2026-05-19 18:54:04.081 | INFO     | app.pipeline:process_frame:42 - [47d10981] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:04.084 | INFO     | app.pipeline:process_frame:38 - [d33a094c] Contornos detectados: 0
+2026-05-19 18:54:04.085 | INFO     | app.pipeline:process_frame:42 - [d33a094c] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:04.155 | DEBUG    | app.card_detector:_try_ocr_zone:165 - OCR fast-path PSM10 rank=5
+2026-05-19 18:54:04.155 | DEBUG    | app.card_detector:_try_ocr_zone:165 - OCR fast-path PSM10 rank=5
+2026-05-19 18:54:04.217 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "d33a094c", "timestamp": 1779227644.2174082, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "5", 
+2026-05-19 18:54:04.217 | INFO     | app.pipeline:process_frame:90 - [d33a094c] Resultado: 1 carta(s), total=5, 0.141s
+2026-05-19 18:54:04.217 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "47d10981", "timestamp": 1779227644.2176259, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "5", 
+2026-05-19 18:54:04.217 | INFO     | app.pipeline:process_frame:90 - [47d10981] Resultado: 1 carta(s), total=5, 0.142s
+2026-05-19 18:54:31.221 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (18735 bytes)
+2026-05-19 18:54:31.221 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (18735 bytes).
+2026-05-19 18:54:31.222 | INFO     | app.pipeline:process_frame:27 - [ac44b709] Processando frame (18735 bytes)...
+2026-05-19 18:54:31.222 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (18735 bytes)
+2026-05-19 18:54:31.222 | INFO     | app.pipeline:process_frame:27 - [e50bd66a] Processando frame (18735 bytes)...
+2026-05-19 18:54:31.225 | INFO     | app.pipeline:process_frame:38 - [ac44b709] Contornos detectados: 0
+2026-05-19 18:54:31.226 | INFO     | app.pipeline:process_frame:42 - [ac44b709] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:31.226 | INFO     | app.pipeline:process_frame:38 - [e50bd66a] Contornos detectados: 0
+2026-05-19 18:54:31.227 | INFO     | app.pipeline:process_frame:42 - [e50bd66a] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:31.426 | DEBUG    | app.card_detector:_try_ocr_zone:183 - OCR fast-path face=A (votos=3/3)
+2026-05-19 18:54:31.427 | DEBUG    | app.card_detector:_try_ocr_zone:183 - OCR fast-path face=A (votos=3/3)
+2026-05-19 18:54:31.490 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "ac44b709", "timestamp": 1779227671.49044, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", "s
+2026-05-19 18:54:31.490 | INFO     | app.pipeline:process_frame:90 - [ac44b709] Resultado: 1 carta(s), total=11, 0.268s
+2026-05-19 18:54:31.491 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "e50bd66a", "timestamp": 1779227671.4909751, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", 
+2026-05-19 18:54:31.491 | INFO     | app.pipeline:process_frame:90 - [e50bd66a] Resultado: 1 carta(s), total=11, 0.268s
+2026-05-19 18:54:44.866 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (20759 bytes)
+2026-05-19 18:54:44.866 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (20759 bytes).
+2026-05-19 18:54:44.867 | INFO     | app.pipeline:process_frame:27 - [2bcb33ec] Processando frame (20759 bytes)...
+2026-05-19 18:54:44.867 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (20759 bytes)
+2026-05-19 18:54:44.867 | INFO     | app.pipeline:process_frame:27 - [fe442cfe] Processando frame (20759 bytes)...
+2026-05-19 18:54:44.871 | INFO     | app.pipeline:process_frame:38 - [2bcb33ec] Contornos detectados: 0
+2026-05-19 18:54:44.871 | INFO     | app.pipeline:process_frame:42 - [2bcb33ec] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:44.871 | INFO     | app.pipeline:process_frame:38 - [fe442cfe] Contornos detectados: 0
+2026-05-19 18:54:44.872 | INFO     | app.pipeline:process_frame:42 - [fe442cfe] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:44.936 | DEBUG    | app.card_detector:_try_ocr_zone:165 - OCR fast-path PSM10 rank=5
+2026-05-19 18:54:44.939 | DEBUG    | app.card_detector:_try_ocr_zone:165 - OCR fast-path PSM10 rank=5
+2026-05-19 18:54:45.000 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "fe442cfe", "timestamp": 1779227685.0004869, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "5", 
+2026-05-19 18:54:45.000 | INFO     | app.pipeline:process_frame:90 - [fe442cfe] Resultado: 1 carta(s), total=5, 0.133s
+2026-05-19 18:54:45.001 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "2bcb33ec", "timestamp": 1779227685.0011377, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "5", 
+2026-05-19 18:54:45.001 | INFO     | app.pipeline:process_frame:90 - [2bcb33ec] Resultado: 1 carta(s), total=5, 0.134s
+2026-05-19 18:54:47.850 | DEBUG    | app.mqtt_manager:publish_frame:91 - Frame publicado (18735 bytes)
+2026-05-19 18:54:47.850 | INFO     | app.main:simulate_upload:127 - Frame simulado publicado via upload (18735 bytes).
+2026-05-19 18:54:47.851 | DEBUG    | app.mqtt_manager:_on_message:49 - Mensagem recebida em 'blackjack/camera/frame' (18735 bytes)
+2026-05-19 18:54:47.851 | INFO     | app.pipeline:process_frame:27 - [f64bb04e] Processando frame (18735 bytes)...
+2026-05-19 18:54:47.851 | INFO     | app.pipeline:process_frame:27 - [4651a84d] Processando frame (18735 bytes)...
+2026-05-19 18:54:47.856 | INFO     | app.pipeline:process_frame:38 - [f64bb04e] Contornos detectados: 0
+2026-05-19 18:54:47.856 | INFO     | app.pipeline:process_frame:42 - [f64bb04e] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:47.857 | INFO     | app.pipeline:process_frame:38 - [4651a84d] Contornos detectados: 0
+2026-05-19 18:54:47.857 | INFO     | app.pipeline:process_frame:42 - [4651a84d] Fallback: processando imagem inteira como carta.
+2026-05-19 18:54:48.048 | DEBUG    | app.card_detector:_try_ocr_zone:183 - OCR fast-path face=A (votos=3/3)
+2026-05-19 18:54:48.051 | DEBUG    | app.card_detector:_try_ocr_zone:183 - OCR fast-path face=A (votos=3/3)
+2026-05-19 18:54:48.111 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "4651a84d", "timestamp": 1779227688.111065, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", "
+2026-05-19 18:54:48.111 | INFO     | app.pipeline:process_frame:90 - [4651a84d] Resultado: 1 carta(s), total=11, 0.259s
+2026-05-19 18:54:48.112 | INFO     | app.mqtt_manager:publish_result:82 - Resultado publicado: {"frame_id": "f64bb04e", "timestamp": 1779227688.1125464, "cards_detected": 1, "cards": [{"card_index": 0, "rank": "A", 
+2026-05-19 18:54:48.112 | INFO     | app.pipeline:process_frame:90 - [f64bb04e] Resultado: 1 carta(s), total=11, 0.261s
+2026-05-19 21:30:43.898 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=7). Reconectando em 5s...
+2026-05-19 21:30:44.900 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 21:30:44.900 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 21:45:16.090 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 21:45:16.090 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 21:45:16.090 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 21:45:16.474 | INFO     | app.mqtt_manager:start:64 - Loop MQTT iniciado.
+2026-05-19 21:45:16.474 | INFO     | app.main:startup:80 - Aplicação iniciada.
+2026-05-19 21:45:16.475 | INFO     | app.mqtt_manager:_on_connect:37 - MQTT conectado ao broker localhost:1883
+2026-05-19 21:45:16.475 | INFO     | app.mqtt_manager:_on_connect:39 - Subscrito em 'blackjack/camera/frame'
+2026-05-19 21:45:39.132 | WARNING  | app.mqtt_manager:_on_disconnect:46 - MQTT desconectado (rc=0). Reconectando em 5s...
+2026-05-19 21:45:39.132 | INFO     | app.mqtt_manager:stop:70 - MQTT desconectado.
+2026-05-19 21:45:39.132 | INFO     | app.main:shutdown:86 - Aplicação encerrada.
+2026-05-19 21:46:53.435 | INFO     | app.mqtt_manager:connect:74 - Loop MQTT iniciado
+2026-05-19 21:46:53.436 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 21:46:53.437 | INFO     | app.mqtt_manager:_on_connect:40 - MQTT conectado a localhost:1883
+2026-05-19 21:46:53.437 | INFO     | app.mqtt_manager:_on_connect:42 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 21:47:10.459 | WARNING  | app.mqtt_manager:_on_disconnect:48 - MQTT desconectado (rc=0)
+2026-05-19 21:47:10.460 | INFO     | app.mqtt_manager:disconnect:81 - MQTT desconectado
+2026-05-19 21:47:10.733 | INFO     | app.mqtt_manager:connect:74 - Loop MQTT iniciado
+2026-05-19 21:47:10.733 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 21:47:10.733 | INFO     | app.mqtt_manager:_on_connect:40 - MQTT conectado a localhost:1883
+2026-05-19 21:47:10.734 | INFO     | app.mqtt_manager:_on_connect:42 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 21:47:32.759 | WARNING  | app.mqtt_manager:_on_disconnect:48 - MQTT desconectado (rc=0)
+2026-05-19 21:47:32.760 | INFO     | app.mqtt_manager:disconnect:81 - MQTT desconectado
+2026-05-19 21:47:33.003 | INFO     | app.mqtt_manager:connect:74 - Loop MQTT iniciado
+2026-05-19 21:47:33.003 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 21:47:33.004 | INFO     | app.mqtt_manager:_on_connect:40 - MQTT conectado a localhost:1883
+2026-05-19 21:47:33.004 | INFO     | app.mqtt_manager:_on_connect:42 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 21:52:03.856 | WARNING  | app.mqtt_manager:_on_disconnect:48 - MQTT desconectado (rc=0)
+2026-05-19 21:52:03.856 | INFO     | app.mqtt_manager:disconnect:81 - MQTT desconectado
+2026-05-19 21:52:04.107 | INFO     | app.mqtt_manager:connect:74 - Loop MQTT iniciado
+2026-05-19 21:52:04.107 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 21:52:04.108 | INFO     | app.mqtt_manager:_on_connect:40 - MQTT conectado a localhost:1883
+2026-05-19 21:52:04.108 | INFO     | app.mqtt_manager:_on_connect:42 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 21:52:47.152 | WARNING  | app.mqtt_manager:_on_disconnect:48 - MQTT desconectado (rc=0)
+2026-05-19 21:52:47.153 | INFO     | app.mqtt_manager:disconnect:81 - MQTT desconectado
+2026-05-19 21:52:47.530 | INFO     | app.mqtt_manager:connect:74 - Loop MQTT iniciado
+2026-05-19 21:52:47.530 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 21:52:47.531 | INFO     | app.mqtt_manager:_on_connect:40 - MQTT conectado a localhost:1883
+2026-05-19 21:52:47.531 | INFO     | app.mqtt_manager:_on_connect:42 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 22:20:35.921 | WARNING  | app.mqtt_manager:_on_disconnect:48 - MQTT desconectado (rc=0)
+2026-05-19 22:20:35.921 | INFO     | app.mqtt_manager:disconnect:81 - MQTT desconectado
+2026-05-19 22:20:36.201 | INFO     | app.mqtt_manager:connect:74 - Loop MQTT iniciado
+2026-05-19 22:20:36.201 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 22:20:36.202 | INFO     | app.mqtt_manager:_on_connect:40 - MQTT conectado a localhost:1883
+2026-05-19 22:20:36.202 | INFO     | app.mqtt_manager:_on_connect:42 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 22:21:32.094 | WARNING  | app.mqtt_manager:_on_disconnect:48 - MQTT desconectado (rc=0)
+2026-05-19 22:21:32.094 | INFO     | app.mqtt_manager:disconnect:81 - MQTT desconectado
+2026-05-19 22:21:32.577 | INFO     | app.mqtt_manager:connect:74 - Loop MQTT iniciado
+2026-05-19 22:21:32.578 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 22:21:32.578 | INFO     | app.mqtt_manager:_on_connect:40 - MQTT conectado a localhost:1883
+2026-05-19 22:21:32.578 | INFO     | app.mqtt_manager:_on_connect:42 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 22:29:30.907 | INFO     | app.mqtt_manager:_on_message:61 - MQTT action: player=p1 action=hit
+2026-05-19 22:29:40.268 | INFO     | app.mqtt_manager:_on_message:61 - MQTT action: player=p2 action=hit
+2026-05-19 22:30:03.101 | INFO     | app.mqtt_manager:_on_message:61 - MQTT action: player=p1 action=hit
+2026-05-19 22:30:05.235 | INFO     | app.mqtt_manager:_on_message:61 - MQTT action: player=p1 action=stand
+2026-05-19 22:30:12.450 | INFO     | app.mqtt_manager:_on_message:61 - MQTT action: player=p2 action=hit
+2026-05-19 22:30:13.187 | INFO     | app.mqtt_manager:_on_message:61 - MQTT action: player=p2 action=hit
+2026-05-19 22:34:11.736 | WARNING  | app.mqtt_manager:_on_disconnect:48 - MQTT desconectado (rc=0)
+2026-05-19 22:34:11.737 | INFO     | app.mqtt_manager:disconnect:81 - MQTT desconectado
+2026-05-19 22:34:12.017 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-19 22:34:12.018 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 22:34:12.018 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-19 22:34:12.018 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 22:34:22.031 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-19 22:34:22.031 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-19 22:34:23.092 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-19 22:34:23.092 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-19 22:34:23.092 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-19 22:34:23.092 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-19 22:34:47.731 | INFO     | app.mqtt_manager:_on_message:70 - MQTT action: player=t1 action=hit
+2026-05-19 22:34:54.032 | INFO     | app.mqtt_manager:_on_message:70 - MQTT action: player=t1 action=hit
+2026-05-19 22:35:01.251 | INFO     | app.mqtt_manager:_on_message:70 - MQTT action: player=t1 action=hit
+2026-05-19 22:38:47.707 | INFO     | app.mqtt_manager:_on_message:70 - MQTT action: player=t1 action=stand
+2026-05-20 14:06:38.942 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-20 14:06:39.942 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:06:39.943 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:37:35.956 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-20 14:37:36.957 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:37:36.958 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:40:05.112 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:40:05.112 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:40:05.506 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:40:05.506 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-20 14:40:05.507 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:40:05.507 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:40:24.528 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:40:24.528 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:40:24.849 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:40:24.849 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-20 14:40:24.849 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:40:24.850 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:40:34.863 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:40:34.863 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:40:35.267 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:40:35.267 | INFO     | app.main:lifespan:70 - Blackjack game server started
+2026-05-20 14:40:35.267 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:40:35.268 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:40:46.280 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:40:46.280 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:40:46.598 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:40:46.598 | INFO     | app.main:lifespan:87 - Blackjack game server started
+2026-05-20 14:40:46.598 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:40:46.598 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:40:50.604 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:40:50.605 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:40:50.939 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:40:50.939 | INFO     | app.main:lifespan:87 - Blackjack game server started
+2026-05-20 14:40:50.940 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:40:50.940 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:43:07.831 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:43:07.831 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:43:08.319 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:43:08.319 | INFO     | app.main:lifespan:87 - Blackjack game server started
+2026-05-20 14:43:08.319 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:43:08.319 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:52:28.908 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:52:28.909 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:52:29.245 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:52:29.245 | INFO     | app.main:lifespan:87 - Blackjack game server started
+2026-05-20 14:52:29.246 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:52:29.246 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:52:39.256 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:52:39.256 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:52:39.579 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:52:39.579 | INFO     | app.main:lifespan:87 - Blackjack game server started
+2026-05-20 14:52:39.580 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:52:39.580 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 14:55:30.335 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 14:55:30.336 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 14:55:31.404 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 14:55:31.404 | INFO     | app.main:lifespan:87 - Blackjack game server started
+2026-05-20 14:55:31.404 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 14:55:31.405 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 15:12:51.044 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 15:12:51.045 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 15:12:51.406 | INFO     | app.mqtt_manager:connect:83 - Loop MQTT iniciado
+2026-05-20 15:12:51.406 | INFO     | app.main:lifespan:87 - Blackjack game server started
+2026-05-20 15:12:51.407 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 15:12:51.407 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 15:13:22.440 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 15:13:22.440 | INFO     | app.mqtt_manager:disconnect:90 - MQTT desconectado
+2026-05-20 15:13:22.962 | INFO     | app.mqtt_manager:connect:85 - Loop MQTT iniciado
+2026-05-20 15:13:22.962 | INFO     | app.main:lifespan:110 - Blackjack game server started
+2026-05-20 15:13:22.962 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 15:13:22.963 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 15:15:23.201 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 15:15:23.202 | INFO     | app.mqtt_manager:disconnect:92 - MQTT desconectado
+2026-05-20 15:15:24.420 | INFO     | app.mqtt_manager:connect:85 - Loop MQTT iniciado
+2026-05-20 15:15:24.420 | INFO     | app.main:lifespan:110 - Blackjack game server started
+2026-05-20 15:15:24.421 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 15:15:24.421 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 15:16:24.388 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 15:16:24.388 | INFO     | app.mqtt_manager:disconnect:92 - MQTT desconectado
+2026-05-20 15:16:25.115 | INFO     | app.mqtt_manager:connect:85 - Loop MQTT iniciado
+2026-05-20 15:16:25.116 | INFO     | app.main:lifespan:110 - Blackjack game server started
+2026-05-20 15:16:25.117 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 15:16:25.117 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 15:35:35.632 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 15:35:35.633 | INFO     | app.mqtt_manager:disconnect:92 - MQTT desconectado
+2026-05-20 15:35:36.117 | INFO     | app.mqtt_manager:connect:85 - Loop MQTT iniciado
+2026-05-20 15:35:36.117 | INFO     | app.main:lifespan:110 - Blackjack game server started
+2026-05-20 15:35:36.117 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 15:35:36.118 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 15:36:07.149 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 15:36:07.149 | INFO     | app.mqtt_manager:disconnect:92 - MQTT desconectado
+2026-05-20 15:37:02.748 | INFO     | app.mqtt_manager:connect:85 - Loop MQTT iniciado
+2026-05-20 15:37:02.748 | INFO     | app.main:lifespan:110 - Blackjack game server started
+2026-05-20 15:37:02.749 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 15:37:02.750 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 15:37:18.979 | INFO     | app.mqtt_manager:connect:85 - Loop MQTT iniciado
+2026-05-20 15:37:18.979 | INFO     | app.main:lifespan:110 - Blackjack game server started
+2026-05-20 15:37:18.980 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=0)
+2026-05-20 15:37:18.980 | INFO     | app.mqtt_manager:disconnect:92 - MQTT desconectado
+2026-05-20 15:37:18.981 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-20 15:37:19.982 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 15:37:19.983 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'

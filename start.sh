@@ -19,7 +19,7 @@ else
     source venv/bin/activate
 fi
 mkdir -p logs
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload &
+uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload &
 BACKEND_PID=$!
 cd ..
 
@@ -36,9 +36,9 @@ echo ""
 echo "============================================================"
 echo " Serviços iniciados:"
 echo "  - MQTT Broker : localhost:1883"
-echo "  - Backend API : http://localhost:8000"
+echo "  - Backend API : http://localhost:8001"
 echo "  - Frontend    : http://localhost:5173"
-echo "  - Docs API    : http://localhost:8000/docs"
+echo "  - Docs API    : http://localhost:8001/docs"
 echo "============================================================"
 echo "Pressione Ctrl+C para encerrar todos os processos."
 

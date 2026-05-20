@@ -1,168 +1,279 @@
 import asyncio
 import json
-import time
-from typing import List
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, UploadFile, File, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
-from app.config import MQTT_TOPIC_RESULT, MQTT_TOPIC_STATUS
-from app.mqtt_manager import mqtt_manager
-from app.pipeline import process_frame
-from app.history import history_store
-from app.image_processing import decode_base64_image, encode_image_base64
-from app.logger import logger
-import threading
-import cv2
-import numpy as np
+import uuid
+from contextlib import asynccontextmanager
+from typing import Set, Optional
 
-app = FastAPI(
-    title="Blackjack Vision IoT",
-    description="Backend de detecção de cartas via MQTT + OpenCV + EasyOCR",
-    version="1.0.0",
-)
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
+from app.game_engine import GameEngine, GameStatus, PlayerStatus
+from app.mqtt_manager import MQTTManager
+from app.logger import logger
+
+# ── Singletons ─────────────────────────────────────────────────────────────
+game = GameEngine()
+mqtt = MQTTManager()
+_ws_clients: Set[WebSocket] = set()
+_loop: Optional[asyncio.AbstractEventLoop] = None
+
+
+# ── WebSocket broadcast ────────────────────────────────────────────────────
+async def broadcast(event_type: str):
+    payload = json.dumps({'type': event_type, 'data': game.to_dict()})
+    dead = set()
+    for ws in _ws_clients:
+        try:
+            await ws.send_text(payload)
+        except Exception:
+            dead.add(ws)
+    _ws_clients.difference_update(dead)
+    try:
+        mqtt.publish('blackjack/game/state', game.to_dict())
+    except Exception as e:
+        logger.warning(f'MQTT publish error: {e}')
+
+
+def _mqtt_action_callback(player_id: str, action: str):
+    """Called from MQTT thread when a player terminal sends hit/stand/bet:N/split/double."""
+    if _loop is None:
+        return
+    if action == 'hit':
+        asyncio.run_coroutine_threadsafe(_handle_hit(player_id), _loop)
+    elif action == 'stand':
+        asyncio.run_coroutine_threadsafe(_handle_stand(player_id), _loop)
+    elif action == 'split':
+        asyncio.run_coroutine_threadsafe(_handle_split(player_id), _loop)
+    elif action == 'double':
+        asyncio.run_coroutine_threadsafe(_handle_double(player_id), _loop)
+    elif action.startswith('bet:'):
+        try:
+            amount = int(action.split(':', 1)[1])
+            asyncio.run_coroutine_threadsafe(_handle_bet(player_id, amount), _loop)
+        except ValueError:
+            pass
+
+
+async def _handle_hit(player_id: str):
+    card = game.player_hit(player_id)
+    if card:
+        event = 'all_players_done' if game.all_players_done() else 'player_hit'
+        await broadcast(event)
+        player = game.get_player(player_id)
+        if player:
+            mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+
+
+async def _handle_stand(player_id: str):
+    if game.player_stand(player_id):
+        event = 'all_players_done' if game.all_players_done() else 'player_stood'
+        await broadcast(event)
+        player = game.get_player(player_id)
+        if player:
+            mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+
+
+async def _handle_split(player_id: str):
+    if game.player_split(player_id):
+        event = 'all_players_done' if game.all_players_done() else 'player_split'
+        await broadcast(event)
+        player = game.get_player(player_id)
+        if player:
+            mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+
+
+async def _handle_double(player_id: str):
+    card = game.player_double(player_id)
+    if card is not None:
+        event = 'all_players_done' if game.all_players_done() else 'player_doubled'
+        await broadcast(event)
+        player = game.get_player(player_id)
+        if player:
+            mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+
+
+async def _handle_bet(player_id: str, amount: int):
+    if game.place_bet(player_id, amount):
+        await broadcast('bet_placed')
+        player = game.get_player(player_id)
+        if player:
+            mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+
+
+# ── Lifespan ───────────────────────────────────────────────────────────────
+@asynccontextmanager
+async def lifespan(app_: FastAPI):
+    global _loop
+    _loop = asyncio.get_event_loop()
+    mqtt.connect(action_callback=_mqtt_action_callback)
+    logger.info('Blackjack game server started')
+    yield
+    mqtt.disconnect()
+
+
+# ── App ────────────────────────────────────────────────────────────────────
+app = FastAPI(title='Blackjack IoT', lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=['*'],
+    allow_methods=['*'],
+    allow_headers=['*'],
 )
 
-# ------------------------------------------------------------------ #
-# WebSocket broadcaster (push de resultados para o frontend)
-# ------------------------------------------------------------------ #
-class ConnectionManager:
-    def __init__(self):
-        self.active: List[WebSocket] = []
-        self._lock = asyncio.Lock()
 
-    async def connect(self, ws: WebSocket):
-        await ws.accept()
-        async with self._lock:
-            self.active.append(ws)
-
-    async def disconnect(self, ws: WebSocket):
-        async with self._lock:
-            if ws in self.active:
-                self.active.remove(ws)
-
-    async def broadcast(self, data: dict):
-        payload = json.dumps(data)
-        disconnected = []
-        for ws in list(self.active):
-            try:
-                await ws.send_text(payload)
-            except Exception:
-                disconnected.append(ws)
-        for ws in disconnected:
-            await self.disconnect(ws)
-
-
-ws_manager = ConnectionManager()
-_loop: asyncio.AbstractEventLoop = None
-
-
-def _on_frame_received(raw_bytes: bytes):
-    """Callback executado em thread MQTT; despacha pipeline e broadcast."""
-    result = process_frame(raw_bytes)
-    if result and _loop:
-        asyncio.run_coroutine_threadsafe(ws_manager.broadcast(result), _loop)
-
-
-# ------------------------------------------------------------------ #
-# Lifecycle
-# ------------------------------------------------------------------ #
-@app.on_event("startup")
-async def startup():
-    global _loop
-    _loop = asyncio.get_event_loop()
-    mqtt_manager.start(frame_callback=_on_frame_received)
-    logger.info("Aplicação iniciada.")
-
-
-@app.on_event("shutdown")
-async def shutdown():
-    mqtt_manager.stop()
-    logger.info("Aplicação encerrada.")
-
-
-# ------------------------------------------------------------------ #
-# REST endpoints auxiliares
-# ------------------------------------------------------------------ #
-@app.get("/health")
-def health():
-    return {
-        "status": "ok",
-        "mqtt_connected": mqtt_manager.is_connected,
-        "timestamp": time.time(),
-    }
-
-
-@app.get("/history")
-def get_history():
-    return {"results": history_store.get_all()}
-
-
-@app.delete("/history")
-def clear_history():
-    history_store.clear()
-    return {"message": "Histórico limpo."}
-
-
-@app.post("/simulate/upload")
-async def simulate_upload(file: UploadFile = File(...)):
-    """
-    Endpoint para simular envio de imagem sem câmera física.
-    Lê o arquivo, publica via MQTT e retorna o resultado.
-    """
-    if file.content_type not in ("image/jpeg", "image/png", "image/webp"):
-        raise HTTPException(status_code=400, detail="Formato não suportado. Use JPEG, PNG ou WEBP.")
-
-    raw = await file.read()
-    if len(raw) == 0:
-        raise HTTPException(status_code=400, detail="Arquivo vazio.")
-
-    # Publica no tópico MQTT (simula câmera)
-    mqtt_manager.publish_frame(raw)
-    logger.info(f"Frame simulado publicado via upload ({len(raw)} bytes).")
-
-    # Também processa diretamente para retornar resultado imediato na resposta HTTP
-    result = process_frame(raw)
-    return JSONResponse(content=result or {"status": "no_cards_detected"})
-
-
-@app.post("/simulate/base64")
-async def simulate_base64(body: dict):
-    """Recebe imagem em base64 e simula publicação MQTT."""
-    b64 = body.get("image")
-    if not b64:
-        raise HTTPException(status_code=400, detail="Campo 'image' ausente.")
-    try:
-        img = decode_base64_image(b64)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Imagem inválida: {e}")
-
-    success, buf = cv2.imencode(".jpg", img)
-    if not success:
-        raise HTTPException(status_code=500, detail="Falha ao recodificar imagem.")
-
-    raw = buf.tobytes()
-    mqtt_manager.publish_frame(raw)
-    result = process_frame(raw)
-    return JSONResponse(content=result or {"status": "no_cards_detected"})
-
-
-# ------------------------------------------------------------------ #
-# WebSocket para streaming de resultados em tempo real
-# ------------------------------------------------------------------ #
-@app.websocket("/ws/results")
-async def websocket_results(ws: WebSocket):
-    await ws_manager.connect(ws)
-    logger.info("WebSocket client conectado.")
+# ── WebSocket endpoint ─────────────────────────────────────────────────────
+@app.websocket('/ws')
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    _ws_clients.add(websocket)
+    # Send current state immediately on connect
+    await websocket.send_text(
+        json.dumps({'type': 'game_state', 'data': game.to_dict()})
+    )
     try:
         while True:
-            # Mantém conexão viva; dados são enviados via broadcast
-            await ws.receive_text()
+            await websocket.receive_text()  # keep-alive
     except WebSocketDisconnect:
-        await ws_manager.disconnect(ws)
-        logger.info("WebSocket client desconectado.")
+        _ws_clients.discard(websocket)
+
+
+# ── REST API ───────────────────────────────────────────────────────────────
+
+class AddPlayerRequest(BaseModel):
+    name: str
+    player_id: Optional[str] = None
+
+
+class BetRequest(BaseModel):
+    amount: int
+
+
+@app.get('/health')
+async def health():
+    return {'status': 'ok', 'game_status': game.status.value}
+
+
+@app.get('/game/state')
+async def get_state():
+    return game.to_dict()
+
+
+@app.post('/game/players')
+async def add_player(req: AddPlayerRequest):
+    player_id = req.player_id or str(uuid.uuid4())[:8]
+    if not game.add_player(player_id, req.name):
+        raise HTTPException(400, 'Não foi possível adicionar jogador (jogo em andamento ou ID duplicado)')
+    await broadcast('player_joined')
+    return {'player_id': player_id, 'name': req.name}
+
+
+@app.delete('/game/players/{player_id}')
+async def remove_player(player_id: str):
+    if not game.remove_player(player_id):
+        raise HTTPException(400, 'Não foi possível remover jogador')
+    await broadcast('player_removed')
+    return {'ok': True}
+
+
+@app.post('/game/players/{player_id}/bet')
+async def place_bet(player_id: str, req: BetRequest):
+    if not game.place_bet(player_id, req.amount):
+        raise HTTPException(400, 'Aposta inválida (valor fora do saldo ou jogo em andamento)')
+    await broadcast('bet_placed')
+    player = game.get_player(player_id)
+    if player:
+        mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+    return game.to_dict()
+
+
+@app.post('/game/start')
+async def start_round():
+    if not game.start_round():
+        raise HTTPException(400, 'Todos os jogadores precisam apostar antes de iniciar')
+    await broadcast('round_started')
+    # Notify each player of their hand via MQTT
+    for p in game.to_dict()['players']:
+        mqtt.publish(f"blackjack/player/{p['player_id']}/hand", p)
+    return game.to_dict()
+
+
+@app.post('/game/players/{player_id}/hit')
+async def player_hit(player_id: str):
+    card = game.player_hit(player_id)
+    if card is None:
+        raise HTTPException(400, 'Não foi possível pedir carta')
+    event = 'all_players_done' if game.all_players_done() else 'player_hit'
+    await broadcast(event)
+    player = game.get_player(player_id)
+    if player:
+        mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+    return game.to_dict()
+
+
+@app.post('/game/players/{player_id}/stand')
+async def player_stand(player_id: str):
+    if not game.player_stand(player_id):
+        raise HTTPException(400, 'Não foi possível parar')
+    event = 'all_players_done' if game.all_players_done() else 'player_stood'
+    await broadcast(event)
+    player = game.get_player(player_id)
+    if player:
+        mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+    return game.to_dict()
+
+
+@app.post('/game/players/{player_id}/split')
+async def player_split(player_id: str):
+    if not game.player_split(player_id):
+        raise HTTPException(400, 'Não foi possível fazer split')
+    event = 'all_players_done' if game.all_players_done() else 'player_split'
+    await broadcast(event)
+    player = game.get_player(player_id)
+    if player:
+        mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+    return game.to_dict()
+
+
+@app.post('/game/players/{player_id}/double')
+async def player_double(player_id: str):
+    card = game.player_double(player_id)
+    if card is None:
+        raise HTTPException(400, 'Não foi possível dobrar')
+    event = 'all_players_done' if game.all_players_done() else 'player_doubled'
+    await broadcast(event)
+    player = game.get_player(player_id)
+    if player:
+        mqtt.publish(f'blackjack/player/{player_id}/hand', player.to_dict())
+    return game.to_dict()
+
+
+@app.post('/game/dealer/play')
+async def dealer_play():
+    if not game.all_players_done():
+        raise HTTPException(400, 'Nem todos os jogadores terminaram')
+    game.dealer_play()
+    await broadcast('dealer_playing')
+    await asyncio.sleep(1.0)   # small pause for animation feel
+    game.calculate_results()
+    await broadcast('round_finished')
+    # Notify each player of their final result via MQTT
+    for p in game.to_dict()['players']:
+        mqtt.publish(f"blackjack/player/{p['player_id']}/hand", p)
+    return game.to_dict()
+
+
+@app.post('/game/reset')
+async def reset_game():
+    game.reset()
+    await broadcast('game_reset')
+    return game.to_dict()
+
+
+@app.post('/game/new-game')
+async def new_game():
+    game.new_game()
+    await broadcast('new_game')
+    return game.to_dict()
+
