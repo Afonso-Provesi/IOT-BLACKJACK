@@ -1,13 +1,20 @@
 import axios from 'axios'
+import { getDeviceId } from './utils/deviceId'
 
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:8001'
+const BASE = import.meta.env.VITE_API_URL || ''
 
 const api = axios.create({ baseURL: BASE })
+
+// Attach device identity to every request so the server can enforce ownership
+api.interceptors.request.use(config => {
+  config.headers['X-Device-ID'] = getDeviceId()
+  return config
+})
 
 export const getState = () => api.get('/game/state').then(r => r.data)
 
 export const addPlayer = (name, player_id = undefined) =>
-  api.post('/game/players', { name, player_id }).then(r => r.data)
+  api.post('/game/players', { name, player_id, owner_token: getDeviceId() }).then(r => r.data)
 
 export const removePlayer = (player_id) =>
   api.delete(`/game/players/${player_id}`).then(r => r.data)

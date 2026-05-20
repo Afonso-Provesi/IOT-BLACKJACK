@@ -2,10 +2,13 @@ import asyncio
 import json
 import uuid
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Set, Optional
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from app.game_engine import GameEngine, GameStatus, PlayerStatus
@@ -144,10 +147,18 @@ async def websocket_endpoint(websocket: WebSocket):
 class AddPlayerRequest(BaseModel):
     name: str
     player_id: Optional[str] = None
+    owner_token: Optional[str] = None
 
 
 class BetRequest(BaseModel):
     amount: int
+
+
+def _assert_owner(player_id: str, device_id: Optional[str]):
+    """Raise 403 if device_id doesn't match the player's owner_token."""
+    player = game.get_player(player_id)
+    if player and player.owner_token and player.owner_token != device_id:
+        raise HTTPException(403, 'Não autorizado — este jogador pertence a outro dispositivo')
 
 
 @app.get('/health')
@@ -163,7 +174,9 @@ async def get_state():
 @app.post('/game/players')
 async def add_player(req: AddPlayerRequest):
     player_id = req.player_id or str(uuid.uuid4())[:8]
-    if not game.add_player(player_id, req.name):
+    if req.owner_token and game.get_player_by_owner(req.owner_token):
+        raise HTTPException(409, 'Este dispositivo já possui um jogador nesta partida')
+    if not game.add_player(player_id, req.name, owner_token=req.owner_token):
         raise HTTPException(400, 'Não foi possível adicionar jogador (jogo em andamento ou ID duplicado)')
     await broadcast('player_joined')
     return {'player_id': player_id, 'name': req.name}
@@ -178,7 +191,8 @@ async def remove_player(player_id: str):
 
 
 @app.post('/game/players/{player_id}/bet')
-async def place_bet(player_id: str, req: BetRequest):
+async def place_bet(player_id: str, req: BetRequest, x_device_id: Optional[str] = Header(default=None)):
+    _assert_owner(player_id, x_device_id)
     if not game.place_bet(player_id, req.amount):
         raise HTTPException(400, 'Aposta inválida (valor fora do saldo ou jogo em andamento)')
     await broadcast('bet_placed')
@@ -200,7 +214,8 @@ async def start_round():
 
 
 @app.post('/game/players/{player_id}/hit')
-async def player_hit(player_id: str):
+async def player_hit(player_id: str, x_device_id: Optional[str] = Header(default=None)):
+    _assert_owner(player_id, x_device_id)
     card = game.player_hit(player_id)
     if card is None:
         raise HTTPException(400, 'Não foi possível pedir carta')
@@ -213,7 +228,8 @@ async def player_hit(player_id: str):
 
 
 @app.post('/game/players/{player_id}/stand')
-async def player_stand(player_id: str):
+async def player_stand(player_id: str, x_device_id: Optional[str] = Header(default=None)):
+    _assert_owner(player_id, x_device_id)
     if not game.player_stand(player_id):
         raise HTTPException(400, 'Não foi possível parar')
     event = 'all_players_done' if game.all_players_done() else 'player_stood'
@@ -225,7 +241,8 @@ async def player_stand(player_id: str):
 
 
 @app.post('/game/players/{player_id}/split')
-async def player_split(player_id: str):
+async def player_split(player_id: str, x_device_id: Optional[str] = Header(default=None)):
+    _assert_owner(player_id, x_device_id)
     if not game.player_split(player_id):
         raise HTTPException(400, 'Não foi possível fazer split')
     event = 'all_players_done' if game.all_players_done() else 'player_split'
@@ -237,7 +254,8 @@ async def player_split(player_id: str):
 
 
 @app.post('/game/players/{player_id}/double')
-async def player_double(player_id: str):
+async def player_double(player_id: str, x_device_id: Optional[str] = Header(default=None)):
+    _assert_owner(player_id, x_device_id)
     card = game.player_double(player_id)
     if card is None:
         raise HTTPException(400, 'Não foi possível dobrar')
@@ -276,4 +294,17 @@ async def new_game():
     game.new_game()
     await broadcast('new_game')
     return game.to_dict()
+
+
+# ── Serve React frontend (static build) ───────────────────────────────────
+_DIST = Path(__file__).resolve().parent.parent.parent / 'frontend' / 'dist'
+
+if _DIST.exists():
+    _assets = _DIST / 'assets'
+    if _assets.exists():
+        app.mount('/assets', StaticFiles(directory=_assets), name='assets')
+
+    @app.get('/{full_path:path}')
+    async def serve_spa(full_path: str):
+        return FileResponse(_DIST / 'index.html')
 

@@ -3,3 +3,4 @@ uvicorn[standard]==0.29.0
 paho-mqtt==1.6.1
 python-dotenv==1.0.1
 loguru==0.7.2
+aiofiles==23.2.1

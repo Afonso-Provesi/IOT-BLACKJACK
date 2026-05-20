@@ -1,5 +1,6 @@
 import Dealer from './Dealer'
 import PlayerSpot from './PlayerSpot'
+import { getDeviceId } from '../utils/deviceId'
 
 // Positions for players arranged in a semicircle (% of table width/height)
 // [x%, y%] — for 1–6 players
@@ -35,8 +36,11 @@ export default function Table({
 
   const canStart = status === 'waiting' && players.length > 0 &&
     players.every(p => p.eliminated || p.bet > 0)
-  const canAddPlayer = (status === 'waiting' || status === 'finished') && players.length < 4 && !gameOverReason
-  const allDone = players.length > 0 && players.every(p => p.status !== 'playing')
+  const alreadyOwnsPlayer = players.some(p => p.owner_token && p.owner_token === getDeviceId())
+  const canAddPlayer = (status === 'waiting' || status === 'finished') && players.length < 4 && !gameOverReason && !alreadyOwnsPlayer
+  const allDone = players.length > 0 && players.every(p =>
+    p.status !== 'playing' && (!p.split_hand || p.split_status !== 'playing')
+  )
   const canDealerPlay = status === 'player_turn' && allDone
   const canReset = status === 'finished' && !gameOverReason
 

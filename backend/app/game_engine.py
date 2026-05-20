@@ -76,9 +76,10 @@ class Hand:
 class Player:
     STARTING_BALANCE = 500
 
-    def __init__(self, player_id: str, name: str):
+    def __init__(self, player_id: str, name: str, owner_token: Optional[str] = None):
         self.player_id = player_id
         self.name = name
+        self.owner_token = owner_token  # browser device UUID that created this player
         # Multi-hand support (split creates a second hand)
         self.hands: List[Hand] = [Hand()]
         self.hand_statuses: List[PlayerStatus] = [PlayerStatus.WAITING]
@@ -146,6 +147,8 @@ class Player:
             return False
         if self.hand_statuses[idx] != PlayerStatus.PLAYING:
             return False
+        # Under Option-A accounting the original bet was never deducted,
+        # so we just need enough balance to cover the same bet again.
         return self.balance >= self.bets[idx]
 
     def do_split(self):
@@ -182,6 +185,7 @@ class Player:
             'can_double': self.can_double(),
             'balance': self.balance,
             'eliminated': self.eliminated,
+            'owner_token': self.owner_token,
         }
 
 
@@ -221,12 +225,22 @@ class GameEngine:
 
     # ── Player management ──────────────────────────────────────────────────
 
-    def add_player(self, player_id: str, name: str) -> bool:
+    def get_player_by_owner(self, owner_token: str) -> Optional['Player']:
+        """Return the player owned by this device token, or None."""
+        for p in self._players.values():
+            if p.owner_token == owner_token:
+                return p
+        return None
+
+    def add_player(self, player_id: str, name: str, owner_token: Optional[str] = None) -> bool:
         if player_id in self._players:
             return False
         if self.status not in (GameStatus.WAITING, GameStatus.FINISHED):
             return False
-        self._players[player_id] = Player(player_id, name)
+        # Each device may own at most one player
+        if owner_token and self.get_player_by_owner(owner_token):
+            return False
+        self._players[player_id] = Player(player_id, name, owner_token=owner_token)
         if player_id not in self._player_order:
             self._player_order.append(player_id)
         if len(self._players) >= 2:
@@ -262,6 +276,10 @@ class GameEngine:
             # Last player standing in a multi-player game
             self.game_over_reason = 'player_wins'
             self.game_over_winner = active[0].name
+        else:
+            # Multiple players still active — clear any stale game-over state
+            self.game_over_reason = None
+            self.game_over_winner = None
 
         # ── Betting ─────────────────────────────────────────────────────────
 
@@ -292,6 +310,8 @@ class GameEngine:
         self._deck = Deck()
         self._dealer.hand = Hand()
         self._dealer.status = PlayerStatus.PLAYING
+        self.game_over_reason = None  # clear stale game-over from between rounds
+        self.game_over_winner = None
 
         # Reset hands (non-eliminated only), preserve bets already placed
         for p in self._players.values():
@@ -379,9 +399,7 @@ class GameEngine:
         if not player or not player.can_double():
             return None
         idx = player.active_hand_idx
-        extra_bet = player.bets[idx]
-        player.balance -= extra_bet
-        player.bets[idx] = extra_bet * 2
+        player.bets[idx] *= 2  # record doubled bet — balance only adjusted at result time
         card = self._deck.draw()
         if card:
             player.hand.add(card)
@@ -389,6 +407,7 @@ class GameEngine:
                 player.status = PlayerStatus.BUST
                 player._advance_hand()
             # No forced stand — player can continue hitting or standing
+        return card
 
     def all_players_done(self) -> bool:
         return all(p.is_done() for p in self._players.values())

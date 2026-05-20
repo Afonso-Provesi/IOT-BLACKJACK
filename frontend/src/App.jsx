@@ -22,13 +22,10 @@ export default function App() {
     }
   }, [lastMessage])
 
-  // Initial fetch — if no players exist yet, add the first terminal automatically
+  // Initial fetch
   useEffect(() => {
     getState().then(state => {
       setGameState(state)
-      if (state.players.length === 0) {
-        addPlayer('Terminal 1').catch(() => {})
-      }
     }).catch(() => {})
   }, [])
 

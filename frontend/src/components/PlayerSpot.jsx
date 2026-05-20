@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Card from './Card'
 import { useCardSound } from '../hooks/useSound'
+import { getDeviceId } from '../utils/deviceId'
 const STATUS_LABELS = {
   waiting: '',
   playing: '',
@@ -126,11 +127,12 @@ export default function PlayerSpot({
   const statusLabel = STATUS_LABELS[player.status] || ''
   const statusColor = STATUS_COLORS[player.status] || ''
   const hasSplit = !!player.split_hand
+  const isOwner = !player.owner_token || player.owner_token === getDeviceId()
   const activeStatus = player.active_hand_idx === 0
     ? player.status
     : (player.split_status || player.status)
-  const canAct = isMyTurn && activeStatus === 'playing' && !player.eliminated
-  const isBettingPhase = (gameStatus === 'waiting' || gameStatus === 'finished') && !player.eliminated
+  const canAct = isMyTurn && activeStatus === 'playing' && !player.eliminated && isOwner
+  const isBettingPhase = (gameStatus === 'waiting' || gameStatus === 'finished') && !player.eliminated && isOwner
   const hasBet = player.bet > 0
 
   const submitBet = () => {
@@ -151,7 +153,7 @@ export default function PlayerSpot({
       {/* Name + balance */}
       <div className="player-name">
         <span>{player.name}</span>
-        {isBettingPhase && !player.eliminated && (
+        {isBettingPhase && !player.eliminated && isOwner && (
           <button className="remove-btn" onClick={() => onRemove(player.player_id)} title="Remover">×</button>
         )}
       </div>
