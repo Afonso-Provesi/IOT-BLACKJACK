@@ -1,17 +1,31 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 
-const WS_URL = import.meta.env.VITE_WS_URL ||
+const DEFAULT_WS_URL = import.meta.env.VITE_WS_URL ||
   (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws'
 
-export function useWebSocket() {
+const getWsUrl = (roomId) => {
+  if (!roomId) return DEFAULT_WS_URL
+
+  const separator = DEFAULT_WS_URL.includes('?') ? '&' : '?'
+  return `${DEFAULT_WS_URL}${separator}room_id=${encodeURIComponent(roomId)}`
+}
+
+export function useWebSocket(roomId) {
   const wsRef = useRef(null)
   const [connected, setConnected] = useState(false)
   const [lastMessage, setLastMessage] = useState(null)
   const reconnectTimer = useRef(null)
 
+  const enabled = Boolean(roomId)
+
   const connect = useCallback(() => {
+    if (!enabled) {
+      setConnected(false)
+      return
+    }
+
     try {
-      const ws = new WebSocket(WS_URL)
+      const ws = new WebSocket(getWsUrl(roomId))
 
       ws.onopen = () => {
         setConnected(true)
@@ -43,15 +57,21 @@ export function useWebSocket() {
       console.error('[WS] Falha ao criar WebSocket:', e)
       reconnectTimer.current = setTimeout(connect, 3000)
     }
-  }, [])
+  }, [enabled, roomId])
 
   useEffect(() => {
+    if (!enabled) {
+      clearTimeout(reconnectTimer.current)
+      wsRef.current?.close()
+      return undefined
+    }
+
     connect()
     return () => {
       clearTimeout(reconnectTimer.current)
       wsRef.current?.close()
     }
-  }, [connect])
+  }, [connect, enabled])
 
   return { connected, lastMessage }
 }

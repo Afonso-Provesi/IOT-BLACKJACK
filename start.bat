@@ -10,14 +10,15 @@ timeout /t 2 /nobreak >nul
 
 echo [2/4] Ativando ambiente Python e iniciando backend...
 cd backend
-if not exist venv (
+set BACKEND_DIR=%CD%
+if not exist venv\Scripts\python.exe (
     python -m venv venv
-    call venv\Scripts\activate
-    pip install -r requirements.txt
-) else (
-    call venv\Scripts\activate
 )
-start "Backend" uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+venv\Scripts\python.exe -c "import fastapi, uvicorn" >nul 2>nul
+if errorlevel 1 (
+    venv\Scripts\python.exe -m pip install -r requirements.txt
+)
+start "Backend" venv\Scripts\python.exe -m uvicorn --app-dir "%BACKEND_DIR%" app.main:app --host 0.0.0.0 --port 8001 --reload
 cd ..
 
 timeout /t 3 /nobreak >nul
@@ -36,8 +37,8 @@ echo.
 echo ============================================================
 echo  Servicos iniciados:
 echo   - MQTT Broker : localhost:1883
-echo   - Backend API : http://localhost:8000
+echo   - Backend API : http://localhost:8001
 echo   - Frontend     : http://localhost:5173
-echo   - Docs API     : http://localhost:8000/docs
+echo   - Docs API     : http://localhost:8001/docs
 echo ============================================================
 pause

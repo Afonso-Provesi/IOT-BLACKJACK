@@ -11,15 +11,16 @@ sleep 2
 
 echo "[2/4] Configurando backend Python..."
 cd backend
-if [ ! -d "venv" ]; then
+if [ ! -x "venv/bin/python3" ]; then
     python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
-else
-    source venv/bin/activate
+fi
+BACKEND_DIR="$(pwd)"
+VENV_PY="$(pwd)/venv/bin/python3"
+if ! "$VENV_PY" -c "import fastapi, uvicorn" >/dev/null 2>&1; then
+    "$VENV_PY" -m pip install -r requirements.txt
 fi
 mkdir -p logs
-uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload &
+"$VENV_PY" -m uvicorn --app-dir "$BACKEND_DIR" app.main:app --host 0.0.0.0 --port 8001 --reload &
 BACKEND_PID=$!
 cd ..
 

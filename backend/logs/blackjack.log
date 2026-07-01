@@ -887,3 +887,106 @@
 2026-05-20 18:57:29.702 | INFO     | app.main:lifespan:113 - Blackjack game server started
 2026-05-20 18:57:29.703 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
 2026-05-20 18:57:29.703 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 19:44:47.947 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-20 19:44:48.949 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 19:44:48.950 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 20:55:38.890 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-20 20:55:39.891 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-20 20:55:39.891 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-20 21:19:51.920 | INFO     | app.mqtt_manager:_on_message:70 - MQTT action: player=Afonso action=hit
+2026-05-22 12:59:44.899 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-22 12:59:45.902 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-22 12:59:45.903 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-22 17:23:39.892 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-22 17:23:40.893 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-22 17:23:40.894 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-05-22 19:49:22.207 | WARNING  | app.mqtt_manager:_on_disconnect:57 - MQTT desconectado (rc=7)
+2026-05-22 19:49:23.214 | INFO     | app.mqtt_manager:_on_connect:49 - MQTT conectado a localhost:1883
+2026-05-22 19:49:23.214 | INFO     | app.mqtt_manager:_on_connect:51 - Subscrito em 'blackjack/player/+/action'
+2026-06-05 00:30:54.153 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 00:30:54.153 | INFO     | app.main:lifespan:282 - Blackjack game server started
+2026-06-05 00:30:54.160 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:30:54.160 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:30:54.160 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 00:37:50.031 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 00:37:50.031 | INFO     | app.main:lifespan:282 - Blackjack game server started
+2026-06-05 00:37:50.032 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:37:50.032 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:37:50.032 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 00:40:49.821 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 00:40:49.821 | INFO     | app.main:lifespan:282 - Blackjack game server started
+2026-06-05 00:40:49.822 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=7)
+2026-06-05 00:40:49.822 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:40:49.822 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:40:49.822 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 00:40:49.822 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-06-05 00:40:49.822 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-06-05 00:40:50.823 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:40:50.823 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:40:50.823 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 00:41:10.843 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-06-05 00:41:10.844 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-06-05 00:41:11.116 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 00:41:11.116 | INFO     | app.main:lifespan:282 - Blackjack game server started
+2026-06-05 00:41:11.117 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:41:11.117 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:41:11.117 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 00:55:30.128 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-06-05 00:55:30.129 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-06-05 00:55:38.751 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 00:55:38.751 | INFO     | app.main:lifespan:282 - Blackjack game server started
+2026-06-05 00:55:38.752 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:55:38.752 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:55:38.752 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 00:59:25.385 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-06-05 00:59:25.385 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-06-05 00:59:25.664 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 00:59:25.664 | INFO     | app.main:lifespan:280 - Blackjack game server started
+2026-06-05 00:59:25.665 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:59:25.665 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:59:25.665 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 01:00:09.935 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-06-05 01:00:09.935 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-06-05 01:00:19.591 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 01:00:19.591 | INFO     | app.main:lifespan:280 - Blackjack game server started
+2026-06-05 01:00:19.591 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 01:00:19.592 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 01:00:19.592 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 10:34:24.940 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=7)
+2026-06-05 10:34:25.942 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 10:34:25.942 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 10:34:25.942 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 11:47:08.926 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=7)
+2026-06-05 11:47:09.929 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 11:47:09.929 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 11:47:09.930 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-06-05 12:22:54.949 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=7)
+2026-06-05 12:22:55.951 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 12:22:55.951 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 12:22:55.951 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-07-01 14:26:28.590 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-07-01 14:26:28.591 | INFO     | app.main:lifespan:280 - Blackjack game server started
+2026-07-01 14:26:28.592 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-07-01 14:26:28.592 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-07-01 14:26:28.592 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-07-01 14:26:38.606 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-07-01 14:26:38.607 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-07-01 14:57:10.741 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-07-01 14:57:10.742 | INFO     | app.main:lifespan:280 - Blackjack game server started
+2026-07-01 14:57:10.742 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-07-01 14:57:10.742 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-07-01 14:57:10.742 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-07-01 14:57:44.779 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-07-01 14:57:44.780 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-07-01 14:58:29.656 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-07-01 14:58:29.656 | INFO     | app.main:lifespan:280 - Blackjack game server started
+2026-07-01 14:58:29.657 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-07-01 14:58:29.657 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-07-01 14:58:29.657 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'
+2026-07-01 15:24:44.328 | WARNING  | app.mqtt_manager:_on_disconnect:63 - MQTT desconectado (rc=0)
+2026-07-01 15:24:44.328 | INFO     | app.mqtt_manager:disconnect:135 - MQTT desconectado
+2026-07-01 15:24:44.690 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-07-01 15:24:44.690 | INFO     | app.main:lifespan:280 - Blackjack game server started
+2026-07-01 15:24:44.691 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-07-01 15:24:44.691 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-07-01 15:24:44.691 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'

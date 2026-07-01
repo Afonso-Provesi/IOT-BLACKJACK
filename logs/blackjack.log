@@ -1,0 +1,5 @@
+2026-06-05 00:35:15.284 | INFO     | app.mqtt_manager:connect:128 - Loop MQTT iniciado
+2026-06-05 00:35:15.284 | INFO     | app.main:lifespan:282 - Blackjack game server started
+2026-06-05 00:35:15.285 | INFO     | app.mqtt_manager:_on_connect:53 - MQTT conectado a localhost:1883
+2026-06-05 00:35:15.285 | INFO     | app.mqtt_manager:_on_connect:56 - Subscrito em 'blackjack/rooms/+/players/+/action'
+2026-06-05 00:35:15.285 | INFO     | app.mqtt_manager:_on_connect:57 - Subscrito em 'blackjack/rooms/+/tables/+/action'

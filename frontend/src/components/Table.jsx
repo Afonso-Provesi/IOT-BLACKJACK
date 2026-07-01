@@ -9,6 +9,7 @@ const POSITIONS = {
   2: [[25, 80], [75, 80]],
   3: [[12, 67], [50, 84], [88, 67]],
   4: [[8, 58],  [30, 81], [70, 81], [92, 58]],
+  5: [[7, 56], [22, 80], [50, 86], [78, 80], [93, 56]],
 }
 
 export default function Table({
@@ -31,13 +32,12 @@ export default function Table({
   const status = gameState?.status ?? 'waiting'
   const gameOverReason = gameState?.game_over_reason ?? null
   const gameOverWinner = gameState?.game_over_winner ?? null
-  const count = Math.min(players.length, 4)
-  const positions = POSITIONS[count] || POSITIONS[4]
+  const count = Math.min(players.length, 5)
+  const positions = POSITIONS[count] || POSITIONS[5]
 
   const canStart = status === 'waiting' && players.length > 0 &&
     players.every(p => p.eliminated || p.bet > 0)
-  const alreadyOwnsPlayer = players.some(p => p.owner_token && p.owner_token === getDeviceId())
-  const canAddPlayer = (status === 'waiting' || status === 'finished') && players.length < 4 && !gameOverReason && !alreadyOwnsPlayer
+  const canAddPlayer = (status === 'waiting' || status === 'finished') && players.length < 5 && !gameOverReason
   const allDone = players.length > 0 && players.every(p =>
     p.status !== 'playing' && (!p.split_hand || p.split_status !== 'playing')
   )
@@ -82,7 +82,7 @@ export default function Table({
           </div>
 
           {/* Player spots positioned around the arc */}
-          {players.slice(0, 4).map((player, i) => {
+          {players.slice(0, 5).map((player, i) => {
             const [x, y] = positions[i] || [50, 80]
             return (
               <div

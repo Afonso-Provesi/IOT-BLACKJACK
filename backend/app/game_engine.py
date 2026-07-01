@@ -213,6 +213,8 @@ class Deck:
 
 
 class GameEngine:
+    MAX_PLAYERS = 5
+
     def __init__(self):
         self._players: Dict[str, Player] = {}
         self._player_order: List[str] = []  # preserves insertion order
@@ -237,8 +239,7 @@ class GameEngine:
             return False
         if self.status not in (GameStatus.WAITING, GameStatus.FINISHED):
             return False
-        # Each device may own at most one player
-        if owner_token and self.get_player_by_owner(owner_token):
+        if len(self._players) >= self.MAX_PLAYERS:
             return False
         self._players[player_id] = Player(player_id, name, owner_token=owner_token)
         if player_id not in self._player_order:

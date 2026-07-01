@@ -1,39 +1,38 @@
 import { useState } from 'react'
 
-export default function AddPlayerModal({ onAdd, onClose }) {
+export default function CreateRoomModal({ onCreate, onClose }) {
   const [name, setName] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (event) => {
+    event.preventDefault()
     const trimmed = name.trim()
     if (!trimmed) return
-    onAdd(trimmed)
-    onClose()
+    onCreate(trimmed)
   }
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={e => e.stopPropagation()}>
-        <h2 className="modal-title">Adicionar terminal de jogador</h2>
+      <div className="modal-box" onClick={event => event.stopPropagation()}>
+        <h2 className="modal-title">Criar terminal de mesa</h2>
         <form onSubmit={handleSubmit}>
           <input
             autoFocus
             className="modal-input"
             type="text"
-            placeholder="Nome do jogador"
-            maxLength={20}
+            placeholder="Nome da sala ou mesa"
+            maxLength={32}
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={event => setName(event.target.value)}
           />
           <div className="modal-help">
-            Esse terminal filho ficará vinculado apenas a esta mesa e publicará ações no tópico MQTT do jogador.
+            O hub cria a sala e registra automaticamente um terminal MQTT de mesa para controlar os terminais dos jogadores.
           </div>
           <div className="modal-actions">
             <button type="button" className="btn-cancel" onClick={onClose}>
               Cancelar
             </button>
             <button type="submit" className="btn-confirm" disabled={!name.trim()}>
-              Adicionar
+              Criar mesa
             </button>
           </div>
         </form>
