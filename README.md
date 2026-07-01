@@ -19,25 +19,52 @@ Importante: este projeto nao usa mais reconhecimento de cartas por camera/OCR no
 ## Arquitetura — Fluxograma
 
 ```mermaid
-flowchart TD
-    Browser(["🌐 Browser\nReact + Vite\n:5173"])
-    Backend(["⚙️ Backend\nFastAPI + Uvicorn\n:8001"])
-    Broker(["📡 MQTT Broker\nMosquitto\n:1883"])
-    Mesa(["🖥️ Terminal de Mesa\nmosquitto_pub/sub\nou player_terminal.py"])
-    Jogador(["🎮 Terminal Jogador\nmosquitto_pub/sub\nou player_terminal.py"])
+%%{init: {
+  "theme": "dark",
+  "flowchart": {
+    "htmlLabels": true,
+    "nodeSpacing": 80,
+    "rankSpacing": 95,
+    "curve": "basis"
+  }
+}}%%
 
-    Browser -- "HTTP REST\n(ações do jogo)" --> Backend
-    Backend -- "WebSocket /ws\n(estado em tempo real)" --> Browser
+flowchart TB
+    Browser(("🌐 Browser<br/>React + Vite<br/>:5173"))
+    Backend(("⚙️ Backend<br/>FastAPI + Uvicorn<br/>:8001"))
+    Broker(("📡 MQTT Broker<br/>Mosquitto<br/>:1883"))
 
-    Backend -- "PUBLISH\nblackjack/hub/state\nblackjack/rooms/{id}/game/state\nblackjack/rooms/{id}/players/{id}/hand" --> Broker
+    Mesa(("🖥️ Terminal de Mesa<br/>mosquitto_pub/sub<br/>ou player_terminal.py"))
+    Jogador(("🎮 Terminal Jogador<br/>mosquitto_pub/sub<br/>ou player_terminal.py"))
 
-    Broker -- "SUBSCRIBE\nblackjack/rooms/+/tables/+/action\nblackjack/rooms/+/players/+/action" --> Backend
+    Browser -- "HTTP REST<br/>(ações do jogo)" --> Backend
+    Backend -- "WebSocket /ws<br/>(estado em tempo real)" --> Browser
 
-    Mesa -- "PUBLISH action\nstart_round / dealer_play\nreset / new_game" --> Broker
-    Broker -- "SUBSCRIBE game/state" --> Mesa
+    Backend --> PubBackend["PUBLISH<br/>blackjack/hub/state<br/>blackjack/rooms/{id}/game/state<br/>blackjack/rooms/{id}/players/{id}/hand"]
+    PubBackend --> Broker
 
-    Jogador -- "PUBLISH action\nhit / stand / split\ndouble / bet:valor" --> Broker
-    Broker -- "SUBSCRIBE players/{id}/hand" --> Jogador
+    Broker --> SubBackend["SUBSCRIBE<br/>blackjack/rooms/+/tables/+/action<br/>blackjack/rooms/+/players/+/action"]
+    SubBackend --> Backend
+
+    Mesa --> PubMesa["PUBLISH action<br/>start_round / dealer_play<br/>reset / new_game"]
+    PubMesa --> Broker
+
+    Broker --> SubMesa["SUBSCRIBE<br/>game/state"]
+    SubMesa --> Mesa
+
+    Jogador --> PubJogador["PUBLISH action<br/>hit / stand / split<br/>bet/value"]
+    PubJogador --> Broker
+
+    Broker --> SubJogador["SUBSCRIBE<br/>players/{id}/hand"]
+    SubJogador --> Jogador
+
+    classDef service fill:#111827,stroke:#e5e7eb,color:#e5e7eb;
+    classDef topic fill:#4b5563,stroke:#4b5563,color:#f9fafb;
+    classDef terminal fill:#111827,stroke:#e5e7eb,color:#e5e7eb;
+
+    class Browser,Backend,Broker service;
+    class PubBackend,SubBackend,PubMesa,SubMesa,PubJogador,SubJogador topic;
+    class Mesa,Jogador terminal;
 ```
 
 ### Como funciona na prática
