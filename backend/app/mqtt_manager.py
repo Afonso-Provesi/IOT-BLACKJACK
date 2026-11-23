@@ -1,9 +1,20 @@
 import json
+import ssl
+import tempfile
 from typing import Callable, Optional
 
 import paho.mqtt.client as mqtt
 
-from app.config import MQTT_BROKER_HOST, MQTT_BROKER_PORT, MQTT_CLIENT_ID
+from app.config import (
+    MQTT_BROKER_HOST,
+    MQTT_BROKER_PORT,
+    MQTT_CA_CERT_PATH,
+    MQTT_CA_CERT_PEM,
+    MQTT_CLIENT_ID,
+    MQTT_PASSWORD,
+    MQTT_TLS,
+    MQTT_USERNAME,
+)
 from app.logger import logger
 
 TOPIC_HUB_STATE = 'blackjack/hub/state'
@@ -38,12 +49,33 @@ class MQTTManager:
         except AttributeError:
             # paho-mqtt 1.x fallback
             self._client = mqtt.Client(client_id=MQTT_CLIENT_ID, protocol=mqtt.MQTTv311)
+        self._configure_security()
+        self._client.reconnect_delay_set(min_delay=1, max_delay=30)
         self._client.on_connect = self._on_connect
         self._client.on_disconnect = self._on_disconnect
         self._client.on_message = self._on_message
         self._connected = False
         self._player_action_callback: Optional[Callable[[str, str, str], None]] = None
         self._table_action_callback: Optional[Callable[[str, str, str, dict], None]] = None
+
+    def _configure_security(self):
+        """Autenticação e TLS, necessários para brokers na nuvem."""
+        if MQTT_USERNAME:
+            self._client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
+
+        if not MQTT_TLS:
+            return
+
+        ca_path = MQTT_CA_CERT_PATH
+        if not ca_path and MQTT_CA_CERT_PEM:
+            tmp = tempfile.NamedTemporaryFile('w', suffix='.crt', delete=False)
+            tmp.write(MQTT_CA_CERT_PEM.replace('\\n', '\n'))
+            tmp.close()
+            ca_path = tmp.name
+
+        # Sem ca_path, usa as CAs públicas do sistema operacional.
+        self._client.tls_set(ca_certs=ca_path, tls_version=ssl.PROTOCOL_TLS_CLIENT)
+        logger.info('MQTT com TLS habilitado')
 
     # ── MQTT callbacks ─────────────────────────────────────────────────────
 

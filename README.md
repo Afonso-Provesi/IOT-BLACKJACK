@@ -16,6 +16,16 @@ Importante: este projeto nao usa mais reconhecimento de cartas por camera/OCR no
 
 ---
 
+## Deploy
+
+O projeto roda em produção como um único contêiner (front + API) ligado a um broker MQTT na nuvem.
+Guia completo em **[DEPLOY.md](DEPLOY.md)**:
+
+- **EMQX Cloud Serverless + Render**: gratuito, broker com TLS e autenticação
+- **AWS EC2**: Docker Compose com Mosquitto protegido por senha
+
+---
+
 ## Arquitetura — Fluxograma
 
 ```mermaid
@@ -450,7 +460,12 @@ mosquitto_pub -h localhost -p 1883 \
 
 ```bash
 # Em um terminal separado, assina a mao do jogador p1 e envia comandos interativos
-python3 player_terminal.py p1
+python3 player_terminal.py p1                 # mesa padrao (mesa-principal)
+python3 player_terminal.py p1 minha-mesa      # outra mesa
+
+# Broker na nuvem: use as mesmas variaveis do backend
+MQTT_BROKER_HOST=xxxx.emqxsl.com MQTT_BROKER_PORT=8883 \
+MQTT_USERNAME=usuario MQTT_PASSWORD=senha python3 player_terminal.py p1
 
 # Comandos aceitos no terminal interativo:
 #   h  -> hit
@@ -485,12 +500,19 @@ Notas:
 
 ## Variaveis de Ambiente (backend/.env)
 
+Copie `backend/.env.example` para `backend/.env`:
+
 ```env
 MQTT_BROKER_HOST=localhost
 MQTT_BROKER_PORT=1883
+MQTT_TLS=false
+# MQTT_USERNAME=usuario      # broker com autenticacao
+# MQTT_PASSWORD=senha
 MQTT_CLIENT_ID=blackjack_backend
 LOG_LEVEL=INFO
 ```
+
+Para brokers na nuvem (porta 8883, TLS) veja [DEPLOY.md](DEPLOY.md).
 
 ---
 
@@ -501,6 +523,7 @@ LOG_LEVEL=INFO
 - Controle de ownership por dispositivo implementado
 - Limite de 5 jogadores por mesa implementado
 - Exclusao de mesa implementada
+- Deploy em nuvem (Render / AWS EC2) com MQTT sobre TLS e autenticacao
 
 ---
 

@@ -1,0 +1,21 @@
+# Blueprint do Render: um único serviço web (front + back) no plano gratuito.
+# O broker MQTT fica fora (ex.: EMQX Serverless). Veja DEPLOY.md.
+services:
+  - type: web
+    name: iot-blackjack
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: MQTT_BROKER_HOST
+        sync: false
+      - key: MQTT_BROKER_PORT
+        value: "8883"
+      - key: MQTT_TLS
+        value: "true"
+      - key: MQTT_USERNAME
+        sync: false
+      - key: MQTT_PASSWORD
+        sync: false
