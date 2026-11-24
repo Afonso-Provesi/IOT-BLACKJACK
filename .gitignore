@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Build
+frontend/dist/
+
+# Segredos e configuração local
+.env
+*.env
+!.env.example
+deploy/aws/.env
+deploy/aws/secrets/
+
+# Logs
+logs/
+*.log
+
+# Sistema
+.DS_Store
+Thumbs.db

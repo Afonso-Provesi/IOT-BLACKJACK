@@ -1,0 +1,29 @@
+# Produção na AWS (EC2): broker Mosquitto com senha + aplicação (front + back).
+# Suba com ./deploy.sh — ele cria a senha do broker na primeira execução.
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: bj_mosquitto
+    ports:
+      - "1883:1883" # terminais externos (player_terminal.py, mosquitto_pub)
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ./secrets:/mosquitto/secrets:ro
+    restart: unless-stopped
+
+  app:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    container_name: bj_app
+    ports:
+      - "80:8001"
+    environment:
+      MQTT_BROKER_HOST: mosquitto
+      MQTT_BROKER_PORT: "1883"
+      MQTT_TLS: "false"
+      MQTT_USERNAME: ${MQTT_USERNAME}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
