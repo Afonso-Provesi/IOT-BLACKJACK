@@ -1,5 +1,6 @@
 import asyncio
 import json
+import os
 import uuid
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -222,9 +223,13 @@ async def _handle_add_player(
 
 async def _handle_remove_player(room_id: str, player_id: str):
     room = _get_room(room_id)
+    was_in_round = room.game.status == GameStatus.PLAYER_TURN
     if not room.game.remove_player(player_id):
         raise HTTPException(400, 'Não foi possível remover jogador')
-    await broadcast(room, 'player_removed')
+    if was_in_round and room.game.status == GameStatus.PLAYER_TURN and room.game.all_players_done():
+        await broadcast(room, 'all_players_done')
+    else:
+        await broadcast(room, 'player_removed')
     return {'ok': True}
 
 
@@ -294,8 +299,30 @@ app.add_middleware(
 
 
 # ── WebSocket endpoint ─────────────────────────────────────────────────────
+# Presença: quem fecha a aba sai da mesa depois de um tempo, para não deixar
+# jogadores "fantasmas" (AFK). O tempo de tolerância cobre recarregar a página
+# e quedas rápidas de conexão.
+AFK_GRACE_SECONDS = int(os.getenv('AFK_GRACE_SECONDS', '45'))
+_device_connections: Dict[tuple, int] = {}
+
+
+async def _remove_if_still_away(room_id: str, device_id: str):
+    await asyncio.sleep(AFK_GRACE_SECONDS)
+    if _device_connections.get((room_id, device_id), 0) > 0:
+        return  # voltou a tempo
+    room = rooms.get_room(room_id)
+    if room is None:
+        return
+    for player_id in room.game.player_ids_by_owner(device_id):
+        logger.info(f'Jogador {player_id} saiu por inatividade (sala {room_id})')
+        try:
+            await _handle_remove_player(room_id, player_id)
+        except HTTPException:
+            pass
+
+
 @app.websocket('/ws')
-async def websocket_endpoint(websocket: WebSocket, room_id: str = DEFAULT_ROOM_ID):
+async def websocket_endpoint(websocket: WebSocket, room_id: str = DEFAULT_ROOM_ID, device_id: Optional[str] = None):
     room = rooms.get_room(room_id)
     await websocket.accept()
     if room is None:
@@ -305,6 +332,9 @@ async def websocket_endpoint(websocket: WebSocket, room_id: str = DEFAULT_ROOM_I
 
     room_clients = _ws_clients.setdefault(room_id, set())
     room_clients.add(websocket)
+    presence_key = (room_id, device_id)
+    if device_id:
+        _device_connections[presence_key] = _device_connections.get(presence_key, 0) + 1
     # Send current state immediately on connect
     await websocket.send_text(
         json.dumps({'type': 'game_state', 'room_id': room_id, 'data': _room_payload(room)})
@@ -313,7 +343,16 @@ async def websocket_endpoint(websocket: WebSocket, room_id: str = DEFAULT_ROOM_I
         while True:
             await websocket.receive_text()  # keep-alive
     except WebSocketDisconnect:
+        pass
+    finally:
         room_clients.discard(websocket)
+        if device_id:
+            remaining = _device_connections.get(presence_key, 1) - 1
+            if remaining > 0:
+                _device_connections[presence_key] = remaining
+            else:
+                _device_connections.pop(presence_key, None)
+                asyncio.create_task(_remove_if_still_away(room_id, device_id))
 
 
 # ── REST API ───────────────────────────────────────────────────────────────

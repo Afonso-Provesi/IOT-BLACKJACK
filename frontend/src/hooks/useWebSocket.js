@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import { getDeviceId } from '../utils/deviceId'
 
 const DEFAULT_WS_URL = import.meta.env.VITE_WS_URL ||
   (location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws'
@@ -7,7 +8,8 @@ const getWsUrl = (roomId) => {
   if (!roomId) return DEFAULT_WS_URL
 
   const separator = DEFAULT_WS_URL.includes('?') ? '&' : '?'
-  return `${DEFAULT_WS_URL}${separator}room_id=${encodeURIComponent(roomId)}`
+  // device_id permite ao servidor tirar da mesa quem fechou a aba (AFK)
+  return `${DEFAULT_WS_URL}${separator}room_id=${encodeURIComponent(roomId)}&device_id=${encodeURIComponent(getDeviceId())}`
 }
 
 export function useWebSocket(roomId) {
