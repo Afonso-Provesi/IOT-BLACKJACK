@@ -135,6 +135,14 @@ export default function PlayerSpot({
   const isBettingPhase = (gameStatus === 'waiting' || gameStatus === 'finished') && !player.eliminated && isOwner
   const hasBet = player.bet > 0
 
+  const roundInProgress = gameStatus === 'player_turn' || gameStatus === 'dealer_turn'
+  const leaveTable = () => {
+    if (roundInProgress && hasBet && !window.confirm('A rodada está em andamento. Sair agora faz você perder a aposta. Sair mesmo assim?')) {
+      return
+    }
+    onRemove(player.player_id)
+  }
+
   const submitBet = () => {
     const amount = parseInt(betInput, 10)
     if (amount > 0 && amount <= player.balance) {
@@ -153,14 +161,16 @@ export default function PlayerSpot({
       {/* Name + balance */}
       <div className="player-name">
         <span>{player.name}</span>
-        {isBettingPhase && !player.eliminated && isOwner && (
-          <button className="remove-btn" onClick={() => onRemove(player.player_id)} title="Remover">×</button>
-        )}
       </div>
       <div className="player-balance">
         💰 {player.balance ?? 500}
         {hasBet && <span className="bet-badge">Aposta: {player.bet}</span>}
       </div>
+      {isOwner && (
+        <button className="btn-leave-table" onClick={leaveTable} title="Sair da mesa">
+          Sair da mesa
+        </button>
+      )}
 
       {/* Betting controls */}
       {isBettingPhase && !hasBet && (

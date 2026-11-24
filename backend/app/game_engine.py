@@ -249,14 +249,25 @@ class GameEngine:
         return True
 
     def remove_player(self, player_id: str) -> bool:
+        """Remove o jogador da mesa a qualquer momento.
+
+        No meio de uma rodada, a aposta é perdida (o saldo só é ajustado no
+        cálculo do resultado, e o jogador deixa de existir antes disso).
+        """
         if player_id not in self._players:
-            return False
-        if self.status not in (GameStatus.WAITING, GameStatus.FINISHED):
             return False
         del self._players[player_id]
         self._player_order = [p for p in self._player_order if p != player_id]
+        if not self._players and self.status in (GameStatus.PLAYER_TURN, GameStatus.DEALER_TURN):
+            # Mesa vazia no meio da rodada: volta ao estado inicial
+            self.status = GameStatus.WAITING
+            self._dealer.hand = Hand()
+            self._dealer.status = PlayerStatus.WAITING
         self._check_game_over()
         return True
+
+    def player_ids_by_owner(self, owner_token: str) -> List[str]:
+        return [pid for pid, p in self._players.items() if owner_token and p.owner_token == owner_token]
 
     def get_player(self, player_id: str) -> Optional[Player]:
         return self._players.get(player_id)
