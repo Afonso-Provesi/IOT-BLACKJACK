@@ -594,6 +594,23 @@ if _DIST.exists():
     if _assets.exists():
         app.mount('/assets', StaticFiles(directory=_assets), name='assets')
 
+    _API_ONLY_PREFIXES = ('/docs', '/redoc', '/openapi.json', '/assets', '/ws', '/health')
+
+    @app.middleware('http')
+    async def spa_navigation(request, call_next):
+        """Navegação do navegador (Accept: text/html) recebe o React.
+
+        O front e a API compartilham caminhos como /rooms/<id>. Sem isso, abrir
+        o link direto de uma mesa mostrava o JSON da API em vez do jogo.
+        """
+        if (
+            request.method == 'GET'
+            and 'text/html' in request.headers.get('accept', '')
+            and not request.url.path.startswith(_API_ONLY_PREFIXES)
+        ):
+            return FileResponse(_DIST / 'index.html')
+        return await call_next(request)
+
     @app.get('/{full_path:path}')
     async def serve_spa(full_path: str):
         return FileResponse(_DIST / 'index.html')
